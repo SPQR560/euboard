@@ -7,3 +7,12 @@ composer:
 
 test:
 	docker-compose run --rm manager-php-cli php bin/phpunit
+
+docker-up:
+	docker-compose up -d
+
+docker-down:
+	docker-compose down
+
+docker-build:
+	docker-compose build
