@@ -1,34 +1,33 @@
 version: '3'
 services:
-  manager-nginx:
-    build:
-      context: ./docker
-      dockerfile: nginx.docker
-    volumes:
-      - ./:/app
-      - ./docker/nginx/ssl:/etc/nginx/ssl
-    depends_on:
-      - manager-php-fpm
-    ports:
-      - "8080:443"
+#  manager-nginx:
+#    build:
+#      context: ./docker
+#      dockerfile: nginx.docker
+#    volumes:
+#      - ./:/app
+#      - ./docker/nginx/ssl:/etc/nginx/ssl
+#    depends_on:
+#      - manager-php-fpm
+#    ports:
+#      - "8080:443"
 
-  manager-php-fpm:
-    build:
-      context: ./docker
-      dockerfile: php-fpm.docker
-    environment:
-      APP_DEBUG: 1
-    volumes:
-      - ./:/app
+#  manager-php-fpm:
+#    build:
+#      context: ./docker
+#      dockerfile: php-fpm.docker
+#    environment:
+#      APP_DEBUG: 1
+#    volumes:
+#      - ./:/app
 
-  manager-php-cli:
-    build:
-      context: ./docker
-      dockerfile: php-cli.docker
-    volumes:
-      - ./:/app
-      - composer:/root/.composer/cache
-  #        tty: true
+#  manager-php-cli:
+#    build:
+#      context: ./docker
+#      dockerfile: php-cli.docker
+#    volumes:
+#      - ./:/app
+#      - composer:/root/.composer/cache
 
   manager-postgres:
     image: postgres:11.2-alpine
@@ -47,5 +46,5 @@ services:
       - "8081:8025"
 
 volumes:
-  composer:
+#  composer:
   manager-postgres:
