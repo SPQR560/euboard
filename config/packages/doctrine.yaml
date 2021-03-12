@@ -16,3 +16,27 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+            Board:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Board/Entity'
+                prefix: 'App\Model\Board\Entity'
+                alias: Board
+            Message:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Message/Entity'
+                prefix: 'App\Model\Message\Entity'
+                alias: Message
+            Thread:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/Thread/Entity'
+                prefix: 'App\Model\Thread\Entity'
+                alias: Thread
+            User:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Model/User/Entity'
+                prefix: 'App\Model\User\Entity'
+                alias: User

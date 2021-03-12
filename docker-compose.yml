@@ -40,6 +40,17 @@ services:
     ports:
       - "54321:5432"
 
+  manager-postgres-test:
+    image: postgres:11.2-alpine
+    volumes:
+      - manager-postgres-test:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: eugeneboard_test
+    ports:
+      - "54322:5432"
+
   mailer:
     image: mailhog/mailhog
     ports:
@@ -48,3 +59,4 @@ services:
 volumes:
 #  composer:
   manager-postgres:
+  manager-postgres-test:
