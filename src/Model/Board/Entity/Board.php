@@ -86,7 +86,7 @@ class Board
     {
         if (!$this->threads->contains($thread)) {
             $this->threads[] = $thread;
-            $thread->setBoards($this);
+            $thread->setBoard($this);
         }
 
         return $this;
@@ -96,8 +96,8 @@ class Board
     {
         if ($this->threads->removeElement($thread)) {
             // set the owning side to null (unless already changed)
-            if ($thread->getBoards() === $this) {
-                $thread->setBoards(null);
+            if ($thread->getBoard() === $this) {
+                $thread->setBoard(null);
             }
         }
 

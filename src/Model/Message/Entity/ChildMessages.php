@@ -18,41 +18,38 @@ class ChildMessages
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Message::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $messageId;
+    private $message;
 
     /**
      * @ORM\ManyToOne(targetEntity=Message::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $ParentMessage;
+    private $parentMessage;
 
-    public function getId(): ?int
+    /**
+     * ChildMessages constructor.
+     * @param Message|null $message
+     * @param Message|null $parentMessage
+     */
+    public function __construct(?Message $message, ?Message $parentMessage)
     {
-        return $this->id;
+        $this->message = $message;
+        $this->parentMessage = $parentMessage;
     }
 
-    public function getMessageId(): ?int
+    public function setMessage(?Message $message): self
     {
-        return $this->messageId;
-    }
-
-    public function setMessageId(int $messageId): self
-    {
-        $this->messageId = $messageId;
+        $this->message = $message;
 
         return $this;
     }
 
-    public function getParentMessage(): ?Message
+    public function setParentMessage(?Message $parentMessage): self
     {
-        return $this->ParentMessage;
-    }
-
-    public function setParentMessage(?Message $ParentMessage): self
-    {
-        $this->ParentMessage = $ParentMessage;
+        $this->parentMessage = $parentMessage;
 
         return $this;
     }

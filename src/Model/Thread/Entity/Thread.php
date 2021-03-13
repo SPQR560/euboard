@@ -51,7 +51,7 @@ class Thread
      * @ORM\ManyToOne(targetEntity=Board::class, inversedBy="threads")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $boards;
+    private $board;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
@@ -146,14 +146,14 @@ class Thread
         return $this;
     }
 
-    public function getBoards(): ?Board
+    public function getBoard(): ?Board
     {
-        return $this->boards;
+        return $this->board;
     }
 
-    public function setBoards(?Board $boards): self
+    public function setBoard(?Board $board): self
     {
-        $this->boards = $boards;
+        $this->board = $board;
 
         return $this;
     }
