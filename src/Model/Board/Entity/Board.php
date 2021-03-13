@@ -35,6 +35,11 @@ class Board
      */
     private $threads;
 
+    public function __toString(): string
+    {
+        return $this->name . ' ' . $this->path;
+    }
+
     public function __construct()
     {
         $this->threads = new ArrayCollection();
