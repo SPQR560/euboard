@@ -32,16 +32,6 @@ class Message
     private $time;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Message::class)
-     */
-    private $childMessages;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Message::class)
-     */
-    private $parentMessages;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Thread::class, inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -54,8 +44,6 @@ class Message
 
     public function __construct()
     {
-        $this->childMessages = new ArrayCollection();
-        $this->parentMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,54 +75,6 @@ class Message
         return $this;
     }
 
-    /**
-     * @return Collection|self[]
-     */
-    public function getChildMessages(): Collection
-    {
-        return $this->childMessages;
-    }
-
-    public function addChildMessage(self $childMessage): self
-    {
-        if (!$this->childMessages->contains($childMessage)) {
-            $this->childMessages[] = $childMessage;
-        }
-
-        return $this;
-    }
-
-    public function removeChildMessage(self $childMessage): self
-    {
-        $this->childMessages->removeElement($childMessage);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getParentMessages(): Collection
-    {
-        return $this->parentMessages;
-    }
-
-    public function addParentMessage(self $parentMessage): self
-    {
-        if (!$this->parentMessages->contains($parentMessage)) {
-            $this->parentMessages[] = $parentMessage;
-        }
-
-        return $this;
-    }
-
-    public function removeParentMessage(self $parentMessage): self
-    {
-        $this->parentMessages->removeElement($parentMessage);
-
-        return $this;
-    }
-
     public function getThread(): ?Thread
     {
         return $this->thread;
@@ -158,6 +98,4 @@ class Message
 
         return $this;
     }
-
-
 }
