@@ -1,6 +1,6 @@
 version: '3'
 services:
-#  manager-nginx:
+#  nginx:
 #    build:
 #      context: ./docker
 #      dockerfile: nginx.docker
@@ -12,7 +12,7 @@ services:
 #    ports:
 #      - "8080:443"
 
-#  manager-php-fpm:
+#  php-fpm:
 #    build:
 #      context: ./docker
 #      dockerfile: php-fpm.docker
@@ -21,7 +21,7 @@ services:
 #    volumes:
 #      - ./:/app
 
-#  manager-php-cli:
+#  php-cli:
 #    build:
 #      context: ./docker
 #      dockerfile: php-cli.docker
@@ -29,10 +29,16 @@ services:
 #      - ./:/app
 #      - composer:/root/.composer/cache
 
-  manager-postgres:
+  node:
+    image: node:12.7-alpine
+    volumes:
+      - ./:/app
+    working_dir: /app
+
+  postgres:
     image: postgres:11.2-alpine
     volumes:
-      - manager-postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 123456
@@ -40,10 +46,10 @@ services:
     ports:
       - "54321:5432"
 
-  manager-postgres-test:
+  postgres-test:
     image: postgres:11.2-alpine
     volumes:
-      - manager-postgres-test:/var/lib/postgresql/data
+      - postgres-test:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: 123456
@@ -58,5 +64,5 @@ services:
 
 volumes:
 #  composer:
-  manager-postgres:
-  manager-postgres-test:
+  postgres:
+  postgres-test:

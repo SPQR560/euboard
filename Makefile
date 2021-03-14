@@ -3,29 +3,32 @@ tests:
 	symfony php bin/phpunit
 
 composer:
-	docker-compose run manager-php-cli composer
+	docker-compose run php-cli composer
 
 test:
-	docker-compose run --rm manager-php-cli php bin/phpunit
+	docker-compose run --rm php-cli php bin/phpunit
 
 make-migration:
-	docker-compose run --rm manager-php-cli php bin/console make:migration
+	docker-compose run --rm php-cli php bin/console make:migration
 
 migrate-migration:
-	docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:migrate
-	docker-compose run --rm manager-php-cli APP_ENV=test php bin/console doctrine:migrations:migrate
+	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate
+	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:migrations:migrate
 
 migrate-migration-win:
-	docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:migrate
-	docker-compose run --rm manager-php-cli php bin/console doctrine:migrations:migrate --env=test
+	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate
+	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate --env=test
 
 load-fixtures:
-	docker-compose run --rm manager-php-cli php bin/console doctrine:fixtures:load
-	docker-compose run --rm manager-php-cli APP_ENV=test php bin/console doctrine:fixtures:load
+	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load
+	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:fixtures:load
 
 load-fixtures-win:
-	docker-compose run --rm manager-php-cli php bin/console doctrine:fixtures:load
-	docker-compose run --rm manager-php-cli php bin/console doctrine:fixtures:load --env=test
+	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load
+	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load --env=test
+
+install-assets:
+	docker-compose run --rm node npm run dev
 
 docker-up:
 	docker-compose up -d
