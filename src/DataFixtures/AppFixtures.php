@@ -66,16 +66,16 @@ class AppFixtures extends Fixture
         $manager->persist($messageSecondThread3);
         $manager->persist(new ChildMessages($messageSecondThread3, $messageSecondThread));
 
-//        $admin = new User();
-//        $admin->setEmail("admin@test.ru");
-//        $admin->setRoles(['ROLE_ADMIN']);
-//
-//        // for dev only!
-//        $encodedPassword = $this->encoderFactory->getEncoder(User::class)
-//            ->encodePassword('123456', null);
-//
-//        $admin->setPassword($encodedPassword);
-//        $manager->persist($admin);
+        $admin = new User();
+        $admin->setEmail("admin@test.ru");
+        $admin->setRoles(['ROLE_ADMIN']);
+
+        // for dev only!
+        $encodedPassword = $this->encoderFactory->getEncoder(User::class)
+            ->encodePassword('123456', null);
+
+        $admin->setPassword($encodedPassword);
+        $manager->persist($admin);
 
         $manager->flush();
     }
