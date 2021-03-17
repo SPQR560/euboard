@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin/http-cache/{uri<.*>}", methods={"PURGE"})
+     * @Route("/admin/http-cache/{uri<.*>}", methods={"PURGE","GET"})
      */
     public function purgeHttpCache(KernelInterface $kernel, Request $request, string $uri): Response
     {
