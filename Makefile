@@ -1,6 +1,6 @@
 tests:
 	php bin/console doctrine:fixtures:load --env=test -n
-	symfony php bin/phpunit
+	php bin/phpunit
 
 composer:
 	docker-compose run php-cli composer

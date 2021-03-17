@@ -24,9 +24,84 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $board = new Board();
-        $board->setName("bulls**t");
+        $board->setName("Random");
         $board->setPath("b");
         $manager->persist($board);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Software developing");
+        $anotherBoard->setPath("dev");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Politics");
+        $anotherBoard->setPath("po");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Auto");
+        $anotherBoard->setPath("au");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Bikes");
+        $anotherBoard->setPath("bi");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Books");
+        $anotherBoard->setPath("bo");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("History");
+        $anotherBoard->setPath("hi");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Movies");
+        $anotherBoard->setPath("mov");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Music");
+        $anotherBoard->setPath("mu");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Science");
+        $anotherBoard->setPath("sc");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("News");
+        $anotherBoard->setPath("news");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Video games");
+        $anotherBoard->setPath("vg");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Hardware");
+        $anotherBoard->setPath("hw");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Religion");
+        $anotherBoard->setPath("rel");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Psychology");
+        $anotherBoard->setPath("psy");
+        $manager->persist($anotherBoard);
+
+        $anotherBoard = new Board();
+        $anotherBoard->setName("Philosophy");
+        $anotherBoard->setPath("phi");
+        $manager->persist($anotherBoard);
 
         $thread = new Thread();
         $thread->setName("Test");
@@ -54,14 +129,14 @@ class AppFixtures extends Fixture
 
         $messageSecondThread2 = new Message();
         $messageSecondThread2->setText("I am fine too");
-        $messageSecondThread2->setTime(new DateTimeImmutable());
+        $messageSecondThread2->setTime((new DateTimeImmutable())->add(new \DateInterval('PT1H')));
         $messageSecondThread2->setThread($thread2);
         $manager->persist($messageSecondThread2);
         $manager->persist(new ChildMessages($messageSecondThread2, $messageSecondThread));
 
         $messageSecondThread3 = new Message();
         $messageSecondThread3->setText("And me too");
-        $messageSecondThread3->setTime(new DateTimeImmutable());
+        $messageSecondThread3->setTime((new DateTimeImmutable())->add(new \DateInterval('PT1H30M')));
         $messageSecondThread3->setThread($thread2);
         $manager->persist($messageSecondThread3);
         $manager->persist(new ChildMessages($messageSecondThread3, $messageSecondThread));
