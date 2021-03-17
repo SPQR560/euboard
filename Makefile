@@ -20,12 +20,12 @@ migrate-migration-win:
 	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate --env=test
 
 load-fixtures:
-	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load
-	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:fixtures:load
+	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load -n
+	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:fixtures:load -n
 
 load-fixtures-win:
-	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load
-	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load --env=test
+	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load -n
+	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load --env=test -n
 
 install-assets:
 	docker-compose run --rm node npm run dev

@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ThreadRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Thread
 {
@@ -61,6 +62,16 @@ class Thread
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreationTimeValue()
+    {
+        if(empty($this->creationTime)) {
+            $this->creationTime = new \DateTimeImmutable();
+        }
     }
 
     public function getId(): ?int

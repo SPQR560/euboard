@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=MessageRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Message
 {
@@ -44,6 +45,16 @@ class Message
 
     public function __construct()
     {
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setTimeValue()
+    {
+        if(empty($this->time)) {
+            $this->time = new \DateTimeImmutable();
+        }
     }
 
     public function getId(): ?int
