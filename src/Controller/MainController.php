@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
-    private $boardFetcher;
+    private IBoardFetcher $boardFetcher;
     public function __construct(IBoardFetcher $boardFetcher)
     {
         $this->boardFetcher = $boardFetcher;
@@ -17,13 +17,16 @@ class MainController extends AbstractController
 
     /**
      * @Route("/", name="main")
+     * @return Response
      */
     public function index(): Response
     {
         $boards = $this->boardFetcher->getBoards();
 
+        $oneHour = 3600;
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController', 'boards' => $boards
-        ]);
+        ])->setSharedMaxAge($oneHour);
+        //]);
     }
 }

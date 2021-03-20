@@ -20,9 +20,10 @@ class BoardController extends AbstractController
      */
     public function boardSidebar(): Response
     {
+        $oneDay = 86400;
         $boards = $this->boardRepository->findBy([], ['name' => 'ASC']);
         return $this->render('board/sidebar.html.twig', [
             'boards' => $boards,
-        ])->setSharedMaxAge(86400);
+        ])->setSharedMaxAge($oneDay);
     }
 }
