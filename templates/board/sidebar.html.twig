@@ -1,7 +1,7 @@
 <ul class="nav flex-column">
     {% for board in boards %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ board.path|e }}"> /{{ board.path|e }} - {{ board.name|e }}</a>
+            <a class="nav-link" href="{{ board.path|e }}"> /{{ board.path|e }} - {{ board.name|e }}</a>
         </li>
     {% endfor %}
 </ul>

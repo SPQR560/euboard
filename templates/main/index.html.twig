@@ -1,16 +1,24 @@
 {% extends 'base_layout.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Welcome again{% endblock %}
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Eugene Sam/Desktop/php/eugeneboard/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Eugene Sam/Desktop/php/eugeneboard/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1>List of boards</h1>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Board</th>
+                <th>Name</th>
+                <th>Post per hour</th>
+            </tr>
+        </thead>
+        {% for board in boards %}
+            <tr>
+                <td><a href="{{ board.path|e }}">{{ board.path|e }}</a></td>
+                <td>{{ board.name|e }}</td>
+                <td>{{ board.postperhour }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
