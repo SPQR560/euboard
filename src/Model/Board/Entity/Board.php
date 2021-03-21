@@ -33,7 +33,7 @@ class Board
     private $path;
 
     /**
-     * @ORM\OneToMany(targetEntity=Thread::class, mappedBy="boards", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Thread::class, mappedBy="board", orphanRemoval=true)
      */
     private $threads;
 
