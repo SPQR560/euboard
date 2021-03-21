@@ -16,8 +16,8 @@ migrate-migration:
 	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:migrations:migrate
 
 migrate-migration-win:
-	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate
-	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate --env=test
+	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate -n
+	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate --env=test -n
 
 load-fixtures:
 	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load -n

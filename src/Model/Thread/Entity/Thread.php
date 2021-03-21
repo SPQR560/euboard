@@ -39,6 +39,11 @@ class Thread
     private $pictureName;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    private $text;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $creationTime;
@@ -87,6 +92,18 @@ class Thread
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    public function setText(string $text): self
+    {
+        $this->text = $text;
 
         return $this;
     }

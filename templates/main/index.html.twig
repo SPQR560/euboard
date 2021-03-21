@@ -15,7 +15,7 @@
         </thead>
         {% for board in boards %}
             <tr>
-                <td><a href="{{ board.path|e }}">{{ board.path|e }}</a></td>
+                <td><a href="board/{{ board.path|e }}">{{ board.path|e }}</a></td>
                 <td>{{ board.name|e }}</td>
                 <td>{{ board.postperhour }}</td>
             </tr>

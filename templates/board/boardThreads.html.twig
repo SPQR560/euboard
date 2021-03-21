@@ -1,0 +1,35 @@
+{% extends 'base_layout.html.twig' %}
+
+{% block title %}{{ board.name|e }}{% endblock %}
+
+{% block body %}
+
+    <h1>List of threads</h1>
+    <div class="row">
+    {% for thread in threads %}
+        <div class="col-4 bg-light ml-1">
+            <div class="container">
+                <h1><a href="/thread/{{ thread.id|e }}">{{ thread.name|e }}</a></h1>
+                <img src="img.jpg">
+                <p>
+                    {% if thread.text|length > 200 %}
+                        {{ thread.text|e[:200]|trim }}…
+                    {% else %}
+                        {{ thread.text|e|trim }}
+                    {% endif %}
+                </p>
+                <small>
+                    <div class="row">
+                        <div class="col">
+                            {{ thread.creationTime|date('Y/m/d H:m:s') }}
+                        </div>
+                        <div class="col">
+                            author: {{ (thread.author is not empty) ? thread.author|e : 'anonymous' }}
+                        </div>
+                    </div>
+                </small>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

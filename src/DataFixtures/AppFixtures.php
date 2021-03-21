@@ -21,6 +21,19 @@ class AppFixtures extends Fixture
         $this->encoderFactory = $encoderFactory;
     }
 
+    /**
+     * @return string
+     */
+    public function setLoremImpsumText(): string
+    {
+        return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam malesuada eu metus non pharetra.
+         In molestie nisl non nulla lacinia pulvinar. Nam eu aliquam libero. Sed lacinia luctus feugiat. Sed nisi nisi,
+          vulputate nec ultricies nec, volutpat eget est. Nulla id mollis ex. Nulla in odio sed enim scelerisque
+           vestibulum. Mauris rutrum nunc neque, nec congue neque elementum sed. Ut mi metus, auctor at ipsum ut,
+            lacinia accumsan nisi. Aliquam aliquam turpis accumsan, bibendum augue sit amet, ullamcorper purus.
+             Donec purus urna, maximus ac augue aliquet, tempor hendrerit risus.";
+    }
+
     public function load(ObjectManager $manager)
     {
         $board = new Board();
@@ -106,6 +119,7 @@ class AppFixtures extends Fixture
         $thread = new Thread();
         $thread->setName("Test");
         $thread->setBoard($board);
+        $thread->setText($this->setLoremImpsumText());
         $thread->setCreationTime(new DateTimeImmutable());
         $manager->persist($thread);
 
@@ -118,6 +132,7 @@ class AppFixtures extends Fixture
         $thread2 = new Thread();
         $thread2->setName("How are you?");
         $thread2->setBoard($board);
+        $thread2->setText("Please answer on my question");
         $thread2->setCreationTime(new DateTimeImmutable());
         $manager->persist($thread2);
 

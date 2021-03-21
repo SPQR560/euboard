@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BoardController extends AbstractController
 {
-    private $boardRepository;
+    private BoardRepository $boardRepository;
     public function __construct(BoardRepository $boardRepository)
     {
         $this->boardRepository = $boardRepository;
@@ -17,6 +17,7 @@ class BoardController extends AbstractController
 
     /**
      * @Route("/board_sidebar", name="board_sidebar")
+     * @return Response
      */
     public function boardSidebar(): Response
     {
@@ -25,5 +26,20 @@ class BoardController extends AbstractController
         return $this->render('board/sidebar.html.twig', [
             'boards' => $boards,
         ])->setSharedMaxAge($oneDay);
+    }
+
+    /**
+     * @Route("/board/{path}", name="board_treads")
+     * @param string $path
+     * @return Response
+     */
+    public function boardThreads(string $path): Response
+    {
+        $board = $this->boardRepository->findOneBy(['path' => $path]);
+        $threads = $board->getThreads();
+        return $this->render('board/boardThreads.html.twig', [
+            'threads' => $threads,
+            'board' => $board
+        ]);
     }
 }
