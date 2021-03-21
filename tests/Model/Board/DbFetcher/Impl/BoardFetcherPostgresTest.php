@@ -62,6 +62,9 @@ class BoardFetcherPostgresTest extends KernelTestCase
 
         $boards = $boardFetcher->getBoards('', true, $oldestThreadCreationTime->add(new \DateInterval('PT10H')));
         $this->assertEquals(0.4, (float)$boards[0]['postperhour']);
+
+        $boards = $boardFetcher->getBoards('', true, $oldestThreadCreationTime->add(new \DateInterval('PT10S')));
+        $this->assertEquals(4, (float)$boards[0]['postperhour']);
     }
 
     private function getOldestThreadOnRandomBoard():string

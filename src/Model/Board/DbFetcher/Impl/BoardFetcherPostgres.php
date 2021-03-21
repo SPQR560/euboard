@@ -49,6 +49,7 @@ class BoardFetcherPostgres implements  IBoardFetcher
                        WHEN query.countOfHours=0
                             OR query.countOfHours IS NULL
                             OR query.messengesOnThreadCount IS NULL THEN 0
+                       WHEN query.countOfHours < 1 THEN query.messengesOnThreadCount 
                        ELSE round((query.messengesOnThreadCount / query.countOfHours)::numeric, 2)
                    END AS postPerHour
             FROM
