@@ -4,6 +4,7 @@ namespace App\Model\Message\Entity;
 
 use App\Model\Message\Repository\ChildMessagesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Model\Thread\Entity\Thread;
 
 /**
  * @ORM\Entity(repositoryClass=ChildMessagesRepository::class)
@@ -30,14 +31,21 @@ class ChildMessages
     private $parentMessage;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Thread::class, inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $thread;
+
+    /**
      * ChildMessages constructor.
      * @param Message|null $message
      * @param Message|null $parentMessage
      */
-    public function __construct(?Message $message, ?Message $parentMessage)
+    public function __construct(?Message $message, ?Message $parentMessage, Thread $thread)
     {
         $this->message = $message;
         $this->parentMessage = $parentMessage;
+        $this->thread = $thread;
     }
 
     public function setMessage(?Message $message): self
@@ -50,6 +58,18 @@ class ChildMessages
     public function setParentMessage(?Message $parentMessage): self
     {
         $this->parentMessage = $parentMessage;
+
+        return $this;
+    }
+
+    public function getThread(): ?Thread
+    {
+        return $this->thread;
+    }
+
+    public function setThread(?Thread $thread): self
+    {
+        $this->thread = $thread;
 
         return $this;
     }

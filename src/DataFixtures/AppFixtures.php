@@ -147,14 +147,14 @@ class AppFixtures extends Fixture
         $messageSecondThread2->setTime((new DateTimeImmutable())->add(new \DateInterval('PT1H')));
         $messageSecondThread2->setThread($thread2);
         $manager->persist($messageSecondThread2);
-        $manager->persist(new ChildMessages($messageSecondThread2, $messageSecondThread));
+        $manager->persist(new ChildMessages($messageSecondThread2, $messageSecondThread, $thread2));
 
         $messageSecondThread3 = new Message();
         $messageSecondThread3->setText("And me too");
         $messageSecondThread3->setTime((new DateTimeImmutable())->add(new \DateInterval('PT1H30M')));
         $messageSecondThread3->setThread($thread2);
         $manager->persist($messageSecondThread3);
-        $manager->persist(new ChildMessages($messageSecondThread3, $messageSecondThread));
+        $manager->persist(new ChildMessages($messageSecondThread3, $messageSecondThread, $thread2));
 
         $admin = new User();
         $admin->setEmail("admin@test.ru");

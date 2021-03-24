@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace App\Model\Thread\Entity;
 
 use App\Model\Message\Entity\Message;
+use App\Model\Message\Entity\ChildMessages;
 use App\Model\Board\Entity\Board;
 use App\Model\User\Entity\User;
 use App\Model\Thread\Repository\ThreadRepository;
@@ -54,6 +55,11 @@ class Thread
     private $messages;
 
     /**
+     * @ORM\OneToMany(targetEntity=ChildMessages::class, mappedBy="thread", orphanRemoval=true)
+     */
+    private $childMessages;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Board::class, inversedBy="threads")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -67,6 +73,7 @@ class Thread
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->childMessages = new ArrayCollection();
     }
 
     /**
@@ -165,6 +172,36 @@ class Thread
     public function removeMessage(Message $message): self
     {
         if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getThread() === $this) {
+                $message->setThread(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChildMessages[]
+     */
+    public function getChildMessages(): Collection
+    {
+        return $this->childMessages;
+    }
+
+    public function addChildMessages(ChildMessages $message): self
+    {
+        if (!$this->childMessages->contains($message)) {
+            $this->childMessages[] = $message;
+            $message->setThread($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessages(ChildMessages $message): self
+    {
+        if ($this->childMessages->removeElement($message)) {
             // set the owning side to null (unless already changed)
             if ($message->getThread() === $this) {
                 $message->setThread(null);
