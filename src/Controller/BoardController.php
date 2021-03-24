@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Board\Entity\Board;
 use App\Model\Board\Repository\BoardRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,12 +31,11 @@ class BoardController extends AbstractController
 
     /**
      * @Route("/board/{path}", name="board_treads")
-     * @param string $path
+     * @param Board $board
      * @return Response
      */
-    public function boardThreads(string $path): Response
+    public function boardThreads(Board $board): Response
     {
-        $board = $this->boardRepository->findOneBy(['path' => $path]);
         $threads = $board->getThreads();
         return $this->render('board/boardThreads.html.twig', [
             'threads' => $threads,
