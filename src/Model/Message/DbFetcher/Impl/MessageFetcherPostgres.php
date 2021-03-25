@@ -48,7 +48,7 @@ class MessageFetcherPostgres implements IMessageFetcher
                 FROM message m
                 LEFT JOIN
                   (SELECT child_message.id AS child_message,
-                          STRING_AGG('>>>>>'||parent_massage.id::CHARACTER varying, ',') AS parent_massages
+                          STRING_AGG(parent_massage.id::CHARACTER varying, ' ') AS parent_massages
                    FROM message AS child_message
                    INNER JOIN child_messages cm ON child_message.id = cm.message_id
                    INNER JOIN message parent_massage ON parent_massage.id = cm.parent_message_id
@@ -58,7 +58,7 @@ class MessageFetcherPostgres implements IMessageFetcher
                    GROUP BY child_message.id) AS responded_to ON responded_to.child_message = m.id
                 LEFT JOIN
                   (SELECT parent_message.id AS parent_message,
-                          STRING_AGG('>>>>>'||child_massage.id::CHARACTER varying, ' ') AS child_massages
+                          STRING_AGG(child_massage.id::CHARACTER varying, ' ') AS child_massages
                    FROM message AS parent_message
                    INNER JOIN child_messages cm ON parent_message.id = cm.parent_message_id
                    INNER JOIN message child_massage ON child_massage.id = cm.message_id

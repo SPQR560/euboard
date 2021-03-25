@@ -1,0 +1,43 @@
+{% extends 'base_layout.html.twig' %}
+
+{% block title %}{{ thread.name|e }}{% endblock %}
+
+{% block body %}
+    <div class="container bg-light">
+        <div class="row">
+            {{ thread.name|e }}
+            {{ thread.creationTime|date('Y/m/d H:m:s') }}
+            author: {{ (thread.author is not empty) ? thread.author|e : 'anonymous' }}
+        </div>
+        <p>
+{#            <img src="{{ thread.pictureName|e }}">#}
+            {{ thread.text|e }}
+        </p>
+    </div>
+
+    {% for message in messages %}
+        <div class="container bg-light mt-1">
+            <div class="row">
+                <strong id="{{ message.id }}">#{{ message.id }}</strong>
+                {{ message.time|date('Y/m/d H:m:s') }}
+{#                    TODO change author_id on login #}
+                author: {{ (message.author_id is not empty) ? thread.author_id|e : 'anonymous' }}
+            </div>
+            {% for link in message.parent_massages|split(' ') %}
+                {% set xssSecureLink = link|e %}
+                {% if xssSecureLink is not empty %}
+                <a href="#{{ xssSecureLink }}">>>>>>{{ link|e }}</a>
+                {% endif %}
+            {% endfor %}
+            <p>
+                {{ message.text|e }}
+            </p>
+            {% for link in message.child_massages|split(' ') %}
+                {% set xssSecureLink = link|e %}
+                {% if xssSecureLink is not empty %}
+                <a href="#{{ xssSecureLink }}">>>>>>{{ xssSecureLink }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock %}

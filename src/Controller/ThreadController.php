@@ -26,9 +26,9 @@ class ThreadController extends AbstractController
     {
         $messages = $this->messageFetcher->getMessages($thread->getId());
 
-        dump($messages);die;
-        return $this->render('thread/index.html.twig', [
-            'controller_name' => 'ThreadController',
+        return $this->render('thread/thread.html.twig', [
+            'thread' => $thread,
+            'messages' => $messages
         ]);
     }
 }

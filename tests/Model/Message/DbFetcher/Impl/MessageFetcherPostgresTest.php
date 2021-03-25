@@ -24,7 +24,7 @@ class MessageFetcherPostgresTest extends KernelTestCase
 
         $messages = $messageFetcher->getMessages($treadId);
         $foundByChildMessageColumn = array_filter($messages, function ($m) {
-            return $m['child_massages'] === ">>>>>23 >>>>>24";
+            return $m['child_massages'] === "23 24";
         });
 
         $this->assertTrue(count($messages) > 0);
