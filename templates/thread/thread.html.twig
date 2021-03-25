@@ -16,9 +16,9 @@
     </div>
 
     {% for message in messages %}
-        <div class="container bg-light mt-1">
+        <div id="{{ message.id }}" class="container bg-light mt-1">
             <div class="row">
-                <strong id="{{ message.id }}">#{{ message.id }}</strong>
+                <strong>#{{ message.id }}</strong>
                 {{ message.time|date('Y/m/d H:m:s') }}
 {#                    TODO change author_id on login #}
                 author: {{ (message.author_id is not empty) ? thread.author_id|e : 'anonymous' }}
@@ -26,7 +26,7 @@
             {% for link in message.parent_massages|split(' ') %}
                 {% set xssSecureLink = link|e %}
                 {% if xssSecureLink is not empty %}
-                <a href="#{{ xssSecureLink }}">>>>>>{{ link|e }}</a>
+                <a class="board-message" href="#{{ xssSecureLink }}">>>>>>{{ link|e }}</a>
                 {% endif %}
             {% endfor %}
             <p>
@@ -35,9 +35,10 @@
             {% for link in message.child_massages|split(' ') %}
                 {% set xssSecureLink = link|e %}
                 {% if xssSecureLink is not empty %}
-                <a href="#{{ xssSecureLink }}">>>>>>{{ xssSecureLink }}</a>
+                <a class="board-message" href="#{{ xssSecureLink }}">>>>>>{{ xssSecureLink }}</a>
                 {% endif %}
             {% endfor %}
+            <div class="pop-up"></div>
         </div>
     {% endfor %}
 {% endblock %}

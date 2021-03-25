@@ -20,4 +20,5 @@ import './bootstrap';
 import 'bootstrap';
 
 //our js
-import './js/boardTable'
+import './js/boardTable';
+import './js/messagePreview';
