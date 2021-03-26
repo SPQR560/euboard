@@ -11,7 +11,7 @@ class ThreadControllerTest extends WebTestCase
 {
     private EntityManager $em;
 
-    public function testThread(): void
+    public function testGetThread(): void
     {
         $client = static::createClient();
 
@@ -22,7 +22,7 @@ class ThreadControllerTest extends WebTestCase
         $treadRepository = $this->em->getRepository(Thread::class);
         $thread = $treadRepository->findOneBy(['name' => 'How are you?']);
 
-        $crawler = $client->request('GET', '/thread/'. htmlspecialchars($thread->getid()));
+        $crawler = $client->request('GET', '/thread/get/'. htmlspecialchars($thread->getid()));
 
         $this->assertResponseIsSuccessful();
         $this->assertTrue($crawler->filter('main')->children('.container')->count() == 4);

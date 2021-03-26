@@ -3,13 +3,15 @@
 {% block title %}{{ board.name|e }}{% endblock %}
 
 {% block body %}
-
+    <div class="action-list row">
+        <a href="{{ path('add_thread') }}">add thread</a>
+    </div>
     <h1>List of threads</h1>
     <div class="row">
     {% for thread in threads %}
         <div class="col-4 bg-light ml-1">
             <div class="container">
-                <h1><a href="/thread/{{ thread.id|e }}">{{ thread.name|e }}</a></h1>
+                <h1><a href="{{ path('get_thread', { 'id' : thread.id|e }) }}">{{ thread.name|e }}</a></h1>
                 <img src="img.jpg">
                 <p>
                     {% if thread.text|length > 200 %}
