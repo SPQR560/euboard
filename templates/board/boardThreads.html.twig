@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="action-list row">
-        <a href="{{ path('add_thread') }}">add thread</a>
+        <a href="{{ path('add_thread', {'board-id' : board.id}) }}">add thread</a>
     </div>
     <h1>List of threads</h1>
     <div class="row">

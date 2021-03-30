@@ -10,6 +10,7 @@ use App\Model\Thread\Repository\ThreadRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ThreadRepository::class)
@@ -26,6 +27,7 @@ class Thread
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -41,6 +43,7 @@ class Thread
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $text;
 
@@ -74,6 +77,11 @@ class Thread
     {
         $this->messages = new ArrayCollection();
         $this->childMessages = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     /**
