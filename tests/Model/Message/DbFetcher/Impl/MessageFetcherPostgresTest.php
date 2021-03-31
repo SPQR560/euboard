@@ -28,7 +28,7 @@ class MessageFetcherPostgresTest extends KernelTestCase
         });
 
         $this->assertTrue(count($messages) > 0);
-        $this->assertTrue(count($foundByChildMessageColumn) == 1);
+        $this->assertCount(1, $foundByChildMessageColumn);
     }
 
     private function getHowAreYouThreadId():int

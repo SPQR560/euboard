@@ -32,7 +32,7 @@ class BoardFetcherPostgresTest extends KernelTestCase
 
         $boards = $boardFetcher->getBoards('rand');
 
-        $this->assertTrue(count($boards) == 1);
+        $this->assertCount(1, $boards);
         $this->assertEquals("Random", $boards[0]['name']);
     }
 

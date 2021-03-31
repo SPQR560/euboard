@@ -3,8 +3,6 @@
 namespace App\Tests\Controller;
 
 use App\Model\Thread\Entity\Thread;
-use App\Model\Thread\Repository\ThreadRepository;
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class MessageControllerTest extends WebTestCase
