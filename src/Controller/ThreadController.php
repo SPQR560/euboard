@@ -42,16 +42,16 @@ class ThreadController extends AbstractController
     {
         $messages = $this->messageFetcher->getMessages($thread->getId());
 
-//        $message = new Message();
-//        $message->setThread($thread);
-//        $form = $this->createForm(MessageFormType::class, $message, [
-//            'action' => $this->generateUrl('add_message')
-//        ]);
-//
+        $message = new Message();
+        $message->setThread($thread);
+        $form = $this->createForm(MessageFormType::class, $message, [
+            'action' => $this->generateUrl('add_message')
+        ]);
+
         return $this->render('thread/getThread.html.twig', [
             'thread' => $thread,
             'messages' => $messages,
-//            'message_form' => $form->createView()
+            'message_form' => $form->createView()
         ]);
     }
 

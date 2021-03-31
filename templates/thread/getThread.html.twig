@@ -19,9 +19,13 @@
         <div id="{{ message.id }}" class="container bg-light mt-1">
             <div class="row">
                 <strong>#{{ message.id }}</strong>
+                &nbsp
                 {{ message.time|date('Y/m/d H:m:s') }}
 {#                    TODO change author_id on login #}
                 author: {{ (message.author_id is not empty) ? thread.author_id|e : 'anonymous' }}
+                &nbsp
+                &nbsp
+                <a href="#{{ message.id }}" class="answerLink" >answer</a>
             </div>
             {% for link in message.parent_massages|split(' ') %}
                 {% set xssSecureLink = link|e %}
@@ -30,7 +34,8 @@
                 {% endif %}
             {% endfor %}
             <p>
-                {{ message.text|e }}
+{#                {{ message.text|e }}  //<b> <s> tags is allowed #}
+                {{ message.text|striptags('<b>,<s>')| raw }}
             </p>
             {% for link in message.child_massages|split(' ') %}
                 {% set xssSecureLink = link|e %}
@@ -41,4 +46,7 @@
             <div class="pop-up"></div>
         </div>
     {% endfor %}
+    <hr>
+    <h6>Add new message</h6>
+    {{ form(message_form) }}
 {% endblock %}

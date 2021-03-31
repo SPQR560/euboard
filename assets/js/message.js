@@ -14,5 +14,14 @@ $(document).ready(function() {
         childrenPopUp
             .removeClass('border border-info pl-3')
             .hide();
-    })
+    });
+
+    $('.answerLink').click(function (e){
+        e.preventDefault();
+        let messageDiv = $(this).parent().parent();
+        let messageDivId = $(messageDiv).attr('id');
+        let messageFormText = $('#message_form_text');
+
+        messageFormText.val(`>>>>>${messageDivId}\n${messageFormText.val()}`);
+    });
 });

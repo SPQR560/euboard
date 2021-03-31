@@ -21,4 +21,4 @@ import 'bootstrap';
 
 //our js
 import './js/boardTable';
-import './js/messagePreview';
+import './js/message';
