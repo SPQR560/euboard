@@ -26,6 +26,12 @@
                 &nbsp
                 &nbsp
                 <a href="#{{ message.id }}" class="answerLink" >answer</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    &nbsp&nbsp
+                    <form action="{{ path('delete_message', {'id' : message.id}) }}" method="post">
+                        <input type="submit" name="delete" value="delete" class="btn btn-danger btn-sm"/>
+                    </form>
+                {% endif %}
             </div>
             {% for link in message.parent_massages|split(' ') %}
                 {% set xssSecureLink = link|e %}

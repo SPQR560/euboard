@@ -51,4 +51,28 @@ class MessageControllerTest extends WebTestCase
         $this->assertEquals('Hello', $lastMessageText);
         $this->assertEquals($lastMessageId, $lastMessageParentId);
     }
+
+    public function testDeleteMessage(): void
+    {
+        $client = static::createClient([],
+            [
+                'PHP_AUTH_USER' => 'admin@test.ru',
+                'PHP_AUTH_PW'   => '123456',
+            ]
+        );
+
+        $thread = $this->getThreadWithNameHowAreYou();
+
+        $crawler = $client->request('GET', '/thread/get/' . htmlspecialchars($thread->getid()));
+        $this->assertResponseIsSuccessful();
+
+        $currentMessageCount = $crawler->filter('main')->children('.mt-1')->count();
+        $this->assertEquals(3, $currentMessageCount);
+        $client->submitForm('delete');
+        $this->assertResponseRedirects();
+        $crawler = $client->followRedirect();
+
+        $currentMessageCount = $crawler->filter('main')->children('.mt-1')->count();
+        $this->assertEquals(2, $currentMessageCount);
+    }
 }
