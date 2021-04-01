@@ -24,4 +24,27 @@ $(document).ready(function() {
 
         messageFormText.val(`>>>>>${messageDivId}\n${messageFormText.val()}`);
     });
+
+    $('#strike_button').click(function (e){
+        e.preventDefault();
+        addOpenTagBeforeSelectionStartAndCloseTagAfterSelectionEndPosition('s');
+    });
+
+    $('#bold_button').click(function (e){
+        e.preventDefault();
+        addOpenTagBeforeSelectionStartAndCloseTagAfterSelectionEndPosition('b');
+    });
+
+    function addOpenTagBeforeSelectionStartAndCloseTagAfterSelectionEndPosition(tag) {
+        let messageFormText = $('#message_form_text');
+        let cursorStartPos = messageFormText.prop('selectionStart');
+        let cursorEndPos = messageFormText.prop('selectionEnd');
+        let textValue = messageFormText.val();
+
+        let selectedText = textValue.substring(cursorStartPos,  cursorEndPos);
+        let textBefore = `${textValue.substring(0,  cursorStartPos)}<${tag}>`;
+        let textAfter  = `</${tag}>${textValue.substring(cursorEndPos, textValue.length)}`;
+
+        messageFormText.val(textBefore + selectedText + textAfter);
+    }
 });

@@ -54,5 +54,11 @@
     {% endfor %}
     <hr>
     <h6>Add new message</h6>
+    <div id="form-buttons" class="row">
+        &nbsp;&nbsp;&nbsp;
+        <button type="button" id="strike_button" class="btn btn-warning btn-sm">&lt;s&gt;</button>
+        &nbsp;
+        <button type="button" id="bold_button" class="btn btn-warning btn-sm">&lt;b&gt;</button>
+    </div>
     {{ form(message_form) }}
 {% endblock %}
