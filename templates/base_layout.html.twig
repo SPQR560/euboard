@@ -12,34 +12,38 @@
 
     </head>
     <body>
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ path("main") }}">eugeneboard</a>
-            <ul class="navbar-nav px-3">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="{{ path("admin") }}">{{ app.user.email|e }}</a>
-                    </li>
-                    <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="{{ path("app_logout") }}">logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="{{ path("app_login") }}">Log in</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path("main") }}">Eugeneboard</a>
 
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">                    
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("admin") }}">{{ app.user.email|e }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("app_logout") }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path("app_login") }}">Log in</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
         <div class="container-fluid">
             <div class="row">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div class="list-group list-group-flush overflow-auto vh-100">
-                        {{ render_esi(path('board_sidebar')) }}
-                    </div>
-                </nav>
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div id="sidebar" class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white col-2">
+                    {{ render_esi(path('board_sidebar')) }}
+                </div>
+                <div id="main" class="col-10 main">
                     {% block body %}{% endblock %}
-                </main>
+                </div>
             </div>
         </div>
         {% block javascripts %}
