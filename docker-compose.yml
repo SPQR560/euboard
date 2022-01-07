@@ -29,11 +29,11 @@ services:
 #      - ./:/app
 #      - composer:/root/.composer/cache
 
-  node:
-    image: node:12.7-alpine
-    volumes:
-      - ./:/app
-    working_dir: /app
+#  node:
+#    image: node:12.7-alpine
+#    volumes:
+#      - ./:/app
+#    working_dir: /app
 
   postgres:
     image: postgres:11.2-alpine
@@ -56,11 +56,6 @@ services:
       POSTGRES_DB: eugeneboard_test
     ports:
       - "54322:5432"
-
-  mailer:
-    image: mailhog/mailhog
-    ports:
-      - "8081:8025"
 
 volumes:
 #  composer:
