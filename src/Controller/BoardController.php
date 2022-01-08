@@ -17,19 +17,6 @@ class BoardController extends AbstractController
     }
 
     /**
-     * @Route("/board_sidebar", name="board_sidebar")
-     * @return Response
-     */
-    public function boardSidebar(): Response
-    {
-        $oneDay = 86400;
-        $boards = $this->boardRepository->findBy([], ['name' => 'ASC']);
-        return $this->render('board/sidebar.html.twig', [
-            'boards' => $boards,
-        ])->setSharedMaxAge($oneDay);
-    }
-
-    /**
      * @Route("/board/{path}", name="board_treads")
      * @param Board $board
      * @return Response

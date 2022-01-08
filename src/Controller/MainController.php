@@ -23,10 +23,8 @@ class MainController extends AbstractController
     {
         $boards = $this->boardFetcher->getBoards();
 
-        $oneHour = 3600;
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController', 'boards' => $boards
-        ])->setSharedMaxAge($oneHour);
-        //]);
+        ]);
     }
 }
