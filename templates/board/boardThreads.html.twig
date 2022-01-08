@@ -26,7 +26,7 @@
                             {{ thread.creationTime|date('Y/m/d H:m:s') }}
                         </div>
                         <div class="col">
-                            author: {{ (thread.author is not empty) ? thread.author|e : 'anonymous' }}
+                            author: {{ (thread.author is not empty) ? '##MOD##' : 'anonymous' }}
                         </div>
                     </div>
                 </small>

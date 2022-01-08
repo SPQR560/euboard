@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class MessageController extends AbstractController
 {
@@ -23,19 +24,22 @@ class MessageController extends AbstractController
     protected MessageTextHandler $textHandler;
     protected MessageRepository $messageRepository;
     protected ChildMessagesRepository $childMessagesRepository;
+    protected Security $security;
 
     public function __construct(
         EntityManagerInterface $entityManager,
         ThreadRepository $threadRepository,
         MessageTextHandler $textHandler,
         MessageRepository $messageRepository,
-        ChildMessagesRepository $childMessagesRepository
+        ChildMessagesRepository $childMessagesRepository,
+        Security $security
     ) {
         $this->entityManager = $entityManager;
         $this->threadRepository = $threadRepository;
         $this->textHandler = $textHandler;
         $this->messageRepository = $messageRepository;
         $this->childMessagesRepository = $childMessagesRepository;
+        $this->security = $security;
     }
 
     /**
@@ -54,7 +58,11 @@ class MessageController extends AbstractController
             $resultArray = $this->textHandler->handleMessage($message);
             $message = $resultArray['message'];
 
-            //todo add author and picture
+            //todo add picture
+            $user = $this->security->getUser();
+            if (!is_null($user)) {
+                $message->setAuthor($user);
+            }
             $this->entityManager->persist($message);
 
             foreach ($resultArray['listOfParentMessages'] as $parentMessageId) {

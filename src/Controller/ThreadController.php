@@ -16,21 +16,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Security\Core\Security;
 
 class ThreadController extends AbstractController
 {
     protected IMessageFetcher $messageFetcher;
     protected EntityManagerInterface $entityManager;
     protected BoardRepository $boardRepository;
+    protected Security $security;
 
     public function __construct(
         IMessageFetcher $messageFetcher,
         EntityManagerInterface $entityManager,
-        BoardRepository $boardRepository
+        BoardRepository $boardRepository,
+        Security $security
     ) {
         $this->messageFetcher = $messageFetcher;
         $this->entityManager = $entityManager;
         $this->boardRepository = $boardRepository;
+        $this->security = $security;
     }
 
     /**
@@ -70,7 +74,11 @@ class ThreadController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() && !is_null($board)) {
             $thread->setCreationTime(new \DateTimeImmutable());
             $thread->setBoard($board);
-            //todo add author and picture
+            //todo add picture
+            $user = $this->security->getUser();
+            if (!is_null($user)) {
+                $thread->setAuthor($user);
+            }
             $this->entityManager->persist($thread);
             $this->entityManager->flush();
 
