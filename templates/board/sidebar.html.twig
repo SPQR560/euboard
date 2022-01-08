@@ -1,5 +1,0 @@
-<div class="list-group list-group-flush border-bottom scrollarea">
-    {% for board in boards %}
-        <a class="list-group-item list-group-item-action py-3 lh-tight" href="{{ path('board_treads', { 'path' : board.path|e}) }}"> /{{ board.path|e }} - {{ board.name|e }}</a>
-    {% endfor %}
-</div>
