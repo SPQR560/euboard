@@ -19,6 +19,19 @@ class ThreadRepository extends ServiceEntityRepository
         parent::__construct($registry, Thread::class);
     }
 
+    public function deleteOldThreads(): void
+    {
+        $threads = $this->findAll();
+        $currentTime = new \DateTimeImmutable();
+        $maxThreadLiveHours = 24;
+        foreach ($threads as $thread) {
+            $threadLiveTime = $currentTime->getTimestamp() - $thread->getCreationTime()->getTimestamp();
+            if (($threadLiveTime > $maxThreadLiveHours * 3600)) {
+                $this->_em->remove($thread);
+            }
+        }
+        $this->_em->flush();  
+    }
     // /**
     //  * @return Thread[] Returns an array of Thread objects
     //  */

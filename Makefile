@@ -38,3 +38,6 @@ docker-down:
 
 docker-build:
 	docker-compose build
+
+remove-old-threads:
+	php bin/console app:delete-old-treads
