@@ -23,10 +23,10 @@
                 <small>
                     <div class="row">
                         <div class="col">
-                            {{ thread.creationTime|date('Y/m/d H:m:s') }}
+                            {{ thread.creation_time|date('Y/m/d H:m:s') }}
                         </div>
                         <div class="col">
-                            author: {{ (thread.author is not empty) ? '##MOD##' : 'anonymous' }}
+                            author: {{ (thread.author_id is not null) ? '##MOD##' : 'anonymous' }}
                         </div>
                     </div>
                 </small>

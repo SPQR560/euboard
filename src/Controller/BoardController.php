@@ -7,13 +7,17 @@ use App\Model\Board\Repository\BoardRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Model\Thread\DbFetcher\IThreadFetcher;
 
 class BoardController extends AbstractController
 {
     private BoardRepository $boardRepository;
-    public function __construct(BoardRepository $boardRepository)
+    private IThreadFetcher $threadFetcher;
+    
+    public function __construct(BoardRepository $boardRepository, IThreadFetcher $treadFetcher)
     {
         $this->boardRepository = $boardRepository;
+        $this->threadFetcher = $treadFetcher;
     }
 
     /**
@@ -23,7 +27,7 @@ class BoardController extends AbstractController
      */
     public function boardThreads(Board $board): Response
     {
-        $threads = $board->getThreads();
+        $threads = $this->threadFetcher->getThreads($board->getId());
         return $this->render('board/boardThreads.html.twig', [
             'threads' => $threads,
             'board' => $board
