@@ -38,13 +38,15 @@
         
         <div class="container-fluid">
             <div class="row">
-                <div id="sidebar" class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white col-2">
-                    <div class="list-group list-group-flush border-bottom scrollarea">
-                        {% for board in sidebarBoards %}
-                            <a class="list-group-item list-group-item-action py-3 lh-tight" href="{{ path('board_treads', { 'path' : board.path|e}) }}"> /{{ board.path|e }} - {{ board.name|e }}</a>
-                        {% endfor %}
+                {% if app.request.get('_route') != 'main' %}
+                    <div id="sidebar" class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white col-2">
+                        <div class="list-group list-group-flush border-bottom scrollarea">
+                            {% for board in sidebarBoards %}
+                                <a class="list-group-item list-group-item-action py-3 lh-tight" href="{{ path('board_treads', { 'path' : board.path|e}) }}"> /{{ board.path|e }} - {{ board.name|e }}</a>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
                 <div id="main" class="col-10 main">
                     {% block body %}{% endblock %}
                 </div>
