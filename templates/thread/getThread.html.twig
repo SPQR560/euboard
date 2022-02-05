@@ -39,7 +39,6 @@
                 {% endif %}
             {% endfor %}
             <p>
-{#                {{ message.text|e }}  //<b> <s> tags is allowed #}
                 {{ message.text|striptags('<b>,<s>')| raw }}
             </p>
             {% for link in message.child_massages|split(' ') %}
@@ -48,7 +47,6 @@
                 <a class="board-message" href="#{{ xssSecureLink }}">>>>>>{{ xssSecureLink }}</a>
                 {% endif %}
             {% endfor %}
-            <div class="pop-up"></div>
         </div>
     {% endfor %}
     <hr>
