@@ -1,43 +1,45 @@
-tests:
-	php bin/console doctrine:fixtures:load --env=test -n
-	php bin/phpunit
+init: docker-up composer-install migrate-migration load-fixtures npm-install install-assets
 
-composer:
-	docker-compose run php-cli composer
+copy-env:
+	cp .env.example .env 
+
+composer-install:
+	docker compose run php-cli composer install
 
 test:
-	docker-compose run --rm php-cli php bin/phpunit
+	docker compose run --rm php-cli php bin/phpunit
 
 make-migration:
-	docker-compose run --rm php-cli php bin/console make:migration
+	docker compose run --rm php-cli php bin/console make:migration
 
 migrate-migration:
-	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate
-	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:migrations:migrate
+	docker compose run --rm php-cli php bin/console doctrine:migrations:migrate
+	docker compose run --rm php-cli php bin/console --env=test doctrine:migrations:migrate
 
-migrate-migration-win:
-	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate -n
-	docker-compose run --rm php-cli php bin/console doctrine:migrations:migrate --env=test -n
 
 load-fixtures:
-	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load -n
-	docker-compose run --rm php-cli APP_ENV=test php bin/console doctrine:fixtures:load -n
+	docker compose run --rm php-cli php bin/console doctrine:fixtures:load -n
+	docker compose run --rm php-cli php bin/console --env=test doctrine:fixtures:load -n
 
-load-fixtures-win:
-	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load -n
-	docker-compose run --rm php-cli php bin/console doctrine:fixtures:load --env=test -n
+npm-install:
+	docker compose run --rm node npm install
 
 install-assets:
-	docker-compose run --rm node npm run dev
+	docker compose run --rm node npm run dev
 
 docker-up:
-	docker-compose up -d
+	docker compose up -d --build --force-recreate
 
 docker-down:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
+
+docker-down-v:
+	docker compose down -v --remove-orphans	
 
 docker-build:
-	docker-compose build
+	docker compose build
+
+docker-hard-reset: docker-down-v docker-up
 
 remove-old-threads:
 	php bin/console app:delete-old-treads

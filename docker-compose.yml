@@ -1,48 +1,47 @@
-version: '3'
 services:
-#  nginx:
-#    build:
-#      context: ./docker
-#      dockerfile: nginx.docker
-#    volumes:
-#      - ./:/app
-#      - ./docker/nginx/ssl:/etc/nginx/ssl
-#    depends_on:
-#      - manager-php-fpm
-#    ports:
-#      - "8080:443"
+  nginx:
+    build:
+      context: ./docker
+      dockerfile: nginx.docker
+    volumes:
+      - ./:/app
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - php-fpm
+    ports:
+      - "8080:443"
 
-#  php-fpm:
-#    build:
-#      context: ./docker
-#      dockerfile: php-fpm.docker
-#    environment:
-#      APP_DEBUG: 1
-#    volumes:
-#      - ./:/app
+  php-fpm:
+    build:
+      context: ./docker
+      dockerfile: php-fpm.docker
+    environment:
+      APP_DEBUG: 1
+    volumes:
+      - ./:/app
 
-#  php-cli:
-#    build:
-#      context: ./docker
-#      dockerfile: php-cli.docker
-#    volumes:
-#      - ./:/app
-#      - composer:/root/.composer/cache
+  php-cli:
+    build:
+      context: ./docker
+      dockerfile: php-cli.docker
+    volumes:
+      - ./:/app
+      - composer:/root/.composer/cache
 
-#  node:
-#    image: node:12.7-alpine
-#    volumes:
-#      - ./:/app
-#    working_dir: /app
+  node:
+    image: node:12.7-alpine
+    volumes:
+      - ./:/app
+    working_dir: /app
 
   postgres:
     image: postgres:11.2-alpine
     volumes:
       - postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: eugeneboard
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
     ports:
       - "54321:5432"
 
@@ -51,13 +50,13 @@ services:
     volumes:
       - postgres-test:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: eugeneboard_test
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE_TEST}
     ports:
       - "54322:5432"
 
 volumes:
-#  composer:
+  composer:
   postgres:
   postgres-test:
