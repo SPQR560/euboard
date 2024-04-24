@@ -11,12 +11,10 @@ use App\Model\Thread\DbFetcher\IThreadFetcher;
 
 class BoardController extends AbstractController
 {
-    private BoardRepository $boardRepository;
     private IThreadFetcher $threadFetcher;
     
-    public function __construct(BoardRepository $boardRepository, IThreadFetcher $treadFetcher)
+    public function __construct(IThreadFetcher $treadFetcher)
     {
-        $this->boardRepository = $boardRepository;
         $this->threadFetcher = $treadFetcher;
     }
 

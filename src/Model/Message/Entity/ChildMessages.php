@@ -48,6 +48,16 @@ class ChildMessages
         $this->thread = $thread;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function setMessage(?Message $message): self
     {
         $this->message = $message;
@@ -55,11 +65,21 @@ class ChildMessages
         return $this;
     }
 
+    public function getMessage(): ?Message
+    {
+        return $this->message;
+    }
+
     public function setParentMessage(?Message $parentMessage): self
     {
         $this->parentMessage = $parentMessage;
 
         return $this;
+    }
+
+    public function getParentMessage(): ?Message
+    {
+        return $this->parentMessage;
     }
 
     public function getThread(): ?Thread
