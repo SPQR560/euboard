@@ -9,6 +9,9 @@ composer-install:
 test:
 	docker compose run --rm php-cli php bin/phpunit
 
+stan:
+	docker compose run php-cli php vendor/bin/phpstan analyse -c phpstan.dist.neon
+
 make-migration:
 	docker compose run --rm php-cli php bin/console make:migration
 
