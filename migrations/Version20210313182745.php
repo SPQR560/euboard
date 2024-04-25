@@ -12,12 +12,12 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20210313182745 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE thread DROP CONSTRAINT fk_31204c837a4426dd');
@@ -27,7 +27,7 @@ final class Version20210313182745 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_31204C83E7EC5785 ON thread (board_id)');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         //$this->addSql('CREATE SCHEMA public');

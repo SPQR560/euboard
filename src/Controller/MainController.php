@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     private IBoardFetcher $boardFetcher;
-    
+
     public function __construct(IBoardFetcher $boardFetcher)
     {
         $this->boardFetcher = $boardFetcher;
@@ -24,7 +24,7 @@ class MainController extends AbstractController
         $boards = $this->boardFetcher->getBoards();
 
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController', 'boards' => $boards
+            'controller_name' => 'MainController', 'boards' => $boards,
         ]);
     }
 }

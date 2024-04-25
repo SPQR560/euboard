@@ -3,8 +3,8 @@
 namespace App\Model\Message\Entity;
 
 use App\Model\Message\Repository\ChildMessagesRepository;
-use Doctrine\ORM\Mapping as ORM;
 use App\Model\Thread\Entity\Thread;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ChildMessagesRepository::class)
@@ -38,8 +38,6 @@ class ChildMessages
 
     /**
      * ChildMessages constructor.
-     * @param Message|null $message
-     * @param Message|null $parentMessage
      */
     public function __construct(?Message $message, ?Message $parentMessage, Thread $thread)
     {

@@ -26,8 +26,11 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private $entityManager;
+
     private $urlGenerator;
+
     private $csrfTokenManager;
+
     private $passwordEncoder;
 
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)

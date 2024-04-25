@@ -1,12 +1,14 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Thread\Entity;
 
-use App\Model\Message\Entity\Message;
-use App\Model\Message\Entity\ChildMessages;
 use App\Model\Board\Entity\Board;
-use App\Model\User\Entity\User;
+use App\Model\Message\Entity\ChildMessages;
+use App\Model\Message\Entity\Message;
 use App\Model\Thread\Repository\ThreadRepository;
+use App\Model\User\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -90,7 +92,7 @@ class Thread
      */
     public function setCreationTimeValue()
     {
-        if(empty($this->creationTime)) {
+        if (empty($this->creationTime)) {
             $this->creationTime = new \DateTimeImmutable();
         }
     }
@@ -185,11 +187,9 @@ class Thread
 
     public function removeMessage(Message $message): self
     {
-        if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getThread() === $this) {
-                $message->setThread(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->messages->removeElement($message) && $message->getThread() === $this) {
+            $message->setThread(null);
         }
 
         return $this;
@@ -215,11 +215,9 @@ class Thread
 
     public function removeMessages(ChildMessages $message): self
     {
-        if ($this->childMessages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getThread() === $this) {
-                $message->setThread(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->childMessages->removeElement($message) && $message->getThread() === $this) {
+            $message->setThread(null);
         }
 
         return $this;

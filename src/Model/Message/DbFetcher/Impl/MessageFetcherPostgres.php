@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Model\Message\DbFetcher\Impl;
-
 
 use App\Model\Message\DbFetcher\IMessageFetcher;
 use Doctrine\DBAL\Connection;
@@ -13,7 +11,6 @@ class MessageFetcherPostgres implements IMessageFetcher
 
     /**
      * MessageFetcherPostgres constructor.
-     * @param Connection $connection
      */
     public function __construct(Connection $connection)
     {
@@ -21,7 +18,6 @@ class MessageFetcherPostgres implements IMessageFetcher
     }
 
     /**
-     * @return array
      * @throws \Doctrine\DBAL\Driver\Exception
      * @throws \Doctrine\DBAL\Exception
      */
@@ -29,14 +25,12 @@ class MessageFetcherPostgres implements IMessageFetcher
     {
         $sql = $this->getSql();
         $result = $this->connection->executeQuery($sql, [
-            'tread_id' => $threadId
+            'tread_id' => $threadId,
         ]);
+
         return $result->fetchAllAssociative();
     }
 
-    /**
-     * @return string
-     */
     protected function getSql(): string
     {
         return "SELECT m.id,

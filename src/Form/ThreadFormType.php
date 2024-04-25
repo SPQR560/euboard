@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Model\Thread\Entity\Thread;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +14,7 @@ class ThreadFormType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label' => 'Title of thread'
+                'label' => 'Title of thread',
             ])
 //            ->add('picture')
 //            ->add('pictureName')

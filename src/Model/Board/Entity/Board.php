@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Board\Entity;
 
 use App\Model\Board\Repository\BoardRepository;
@@ -39,7 +41,7 @@ class Board
 
     public function __toString(): string
     {
-        return $this->name . ' ' . $this->path;
+        return $this->name.' '.$this->path;
     }
 
     public function __construct()
@@ -101,11 +103,9 @@ class Board
 
     public function removeThread(Thread $thread): self
     {
-        if ($this->threads->removeElement($thread)) {
-            // set the owning side to null (unless already changed)
-            if ($thread->getBoard() === $this) {
-                $thread->setBoard(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->threads->removeElement($thread) && $thread->getBoard() === $this) {
+            $thread->setBoard(null);
         }
 
         return $this;

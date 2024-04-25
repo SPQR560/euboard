@@ -24,14 +24,14 @@ class MessageFetcherPostgresTest extends KernelTestCase
 
         $messages = $messageFetcher->getMessages($treadId);
         $foundByChildMessageColumn = array_filter($messages, function ($m) {
-            return $m['child_massages'] === "23 24";
+            return '23 24' === $m['child_massages'];
         });
 
         $this->assertTrue(count($messages) > 0);
         $this->assertCount(1, $foundByChildMessageColumn);
     }
 
-    private function getHowAreYouThreadId():int
+    private function getHowAreYouThreadId(): int
     {
         $sql = $this->connection->createQueryBuilder()
             ->select('t.id as id')
@@ -41,6 +41,7 @@ class MessageFetcherPostgresTest extends KernelTestCase
 
         $result = $this->connection->executeQuery($sql);
         $array = $result->fetchAssociative();
+
         return $array['id'];
     }
 }
