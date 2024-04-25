@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Message\Service;
-
 
 use App\Model\Message\Entity\Message;
 
@@ -23,7 +23,7 @@ class MessageTextHandler
     {
         $listOfParentMessages = [];
         preg_match_all($parentMessagesRegexPattern, $message, $matchesArray, PREG_PATTERN_ORDER);
-        if (count($matchesArray) == 2) {
+        if (2 == count($matchesArray)) {
             $listOfParentMessages = array_map(static function ($el) {
                 return intval($el);
             }, $matchesArray[1]);
@@ -43,7 +43,7 @@ class MessageTextHandler
         //xss secure
         $textWithoutParentMessages = strip_tags($textWithoutParentMessages, ['<b>', '<s>']);
 
-        $textWithoutTagAttributes = preg_replace($removeTagAttributesPattern,'<$1$2>', $textWithoutParentMessages);
+        $textWithoutTagAttributes = preg_replace($removeTagAttributesPattern, '<$1$2>', $textWithoutParentMessages);
 
         $message->setText($textWithoutTagAttributes);
     }

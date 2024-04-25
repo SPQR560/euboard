@@ -1,13 +1,15 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Thread\DbFetcher\Impl;
-use  App\Model\Thread\DbFetcher\IThreadFetcher;
+
+use App\Model\Thread\DbFetcher\IThreadFetcher;
 use Doctrine\DBAL\Connection;
 
 class ThreadFetcherPostgress implements IThreadFetcher
 {
-     protected $connection;
+    protected $connection;
 
     /**
      * MessageFetcherPostgres constructor.
@@ -24,16 +26,17 @@ class ThreadFetcherPostgress implements IThreadFetcher
     public function getThreads(int $boardId): array
     {
         $currentTime = new \DateTimeImmutable();
-        
+
         $sql = $this->getSql();
         $result = $this->connection->executeQuery($sql, [
             'boardId' => $boardId,
-            'currentTime' => $currentTime->format("Y-m-d H:i:sO")
+            'currentTime' => $currentTime->format('Y-m-d H:i:sO'),
         ]);
+
         return $result->fetchAllAssociative();
     }
-    
-     protected function getSql(): string
+
+    protected function getSql(): string
     {
         return <<<SQL
 SELECT

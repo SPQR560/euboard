@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Board\DbFetcher\Impl;
@@ -6,7 +7,7 @@ namespace App\Model\Board\DbFetcher\Impl;
 use App\Model\Board\DbFetcher\IBoardFetcher;
 use Doctrine\DBAL\Connection;
 
-class BoardFetcherPostgres implements  IBoardFetcher
+class BoardFetcherPostgres implements IBoardFetcher
 {
     protected $connection;
 
@@ -28,8 +29,9 @@ class BoardFetcherPostgres implements  IBoardFetcher
         $sql = $this->getBoardsWithMessagePerHourRate($sortDesc);
         $result = $this->connection->executeQuery($sql, [
             'name' => $boardName,
-            'currentTime' => $currentTime->format("Y-m-d H:i:sO")
+            'currentTime' => $currentTime->format('Y-m-d H:i:sO'),
         ]);
+
         return $result->fetchAllAssociative();
     }
 
@@ -61,6 +63,6 @@ class BoardFetcherPostgres implements  IBoardFetcher
                       LEFT JOIN message m ON t.id = m.thread_id
                       GROUP BY t.board_id) AS tr ON tr.board_id = b.id
                    WHERE LOWER(b.name) LIKE '%'||:name||'%' ) AS query
-                ORDER BY postPerHour " . ($sortDesc ? "DESC;" : "ASC;");
+                ORDER BY postPerHour ".($sortDesc ? 'DESC;' : 'ASC;');
     }
 }

@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Board\Entity;
 
 use App\Model\Board\Repository\BoardRepository;
@@ -39,7 +41,7 @@ class Board
 
     public function __toString(): string
     {
-        return $this->name . ' ' . $this->path;
+        return $this->name.' '.$this->path;
     }
 
     public function __construct()

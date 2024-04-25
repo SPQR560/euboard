@@ -2,10 +2,10 @@
 
 namespace App\EventSubscriber;
 
+use App\Model\Board\Repository\BoardRepository;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Twig\Environment;
-use App\Model\Board\Repository\BoardRepository;
 
 class TwigEventSubscriber implements EventSubscriberInterface
 {

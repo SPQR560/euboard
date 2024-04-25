@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Model\Message\Service;
-
 
 use App\Model\Message\Entity\Message;
 use App\Model\Message\Service\MessageTextHandler;
@@ -14,7 +12,7 @@ class MessageTextHandlerTest extends KernelTestCase
     {
         $messageHandler = new MessageTextHandler();
         $message = new Message();
-        $message->setText(">>>>>123 >>>>>777 Hello there");
+        $message->setText('>>>>>123 >>>>>777 Hello there');
 
         $handledMessageArray = $messageHandler->handleMessage($message);
 
@@ -26,7 +24,7 @@ class MessageTextHandlerTest extends KernelTestCase
     {
         $messageHandler = new MessageTextHandler();
         $message = new Message();
-        $message->setText("Hello there!!! 4445");
+        $message->setText('Hello there!!! 4445');
 
         $handledMessageArray = $messageHandler->handleMessage($message);
 
@@ -43,7 +41,7 @@ class MessageTextHandlerTest extends KernelTestCase
 
         $handledMessageArray = $messageHandler->handleMessage($message);
 
-        $this->assertEquals("<b>Hello</b> there how are <s>you!!!</s>click me", $handledMessageArray['message']->getText());
+        $this->assertEquals('<b>Hello</b> there how are <s>you!!!</s>click me', $handledMessageArray['message']->getText());
         $this->assertEquals([777], $handledMessageArray['listOfParentMessages']);
     }
 }

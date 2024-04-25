@@ -14,6 +14,7 @@ class MessageControllerTest extends WebTestCase
             ->get('doctrine')
             ->getManager();
         $treadRepository = $em->getRepository(Thread::class);
+
         return $treadRepository->findOneBy(['name' => 'How are you?']);
     }
 
@@ -23,7 +24,7 @@ class MessageControllerTest extends WebTestCase
 
         $thread = $this->getThreadWithNameHowAreYou();
 
-        $client->request('GET', '/thread/get/' . htmlspecialchars($thread->getid()));
+        $client->request('GET', '/thread/get/'.htmlspecialchars($thread->getid()));
         $this->assertResponseIsSuccessful();
 
         $messageText = 'Test test test';
@@ -57,13 +58,13 @@ class MessageControllerTest extends WebTestCase
         $client = static::createClient([],
             [
                 'PHP_AUTH_USER' => 'admin@test.ru',
-                'PHP_AUTH_PW'   => '123456',
+                'PHP_AUTH_PW' => '123456',
             ]
         );
 
         $thread = $this->getThreadWithNameHowAreYou();
 
-        $crawler = $client->request('GET', '/thread/get/' . htmlspecialchars($thread->getid()));
+        $crawler = $client->request('GET', '/thread/get/'.htmlspecialchars($thread->getid()));
         $this->assertResponseIsSuccessful();
 
         $currentMessageCount = $crawler->filter('main')->children('.mt-1')->count();

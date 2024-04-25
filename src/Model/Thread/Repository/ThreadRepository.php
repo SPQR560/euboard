@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Thread\Repository;
 
 use App\Model\Thread\Entity\Thread;
@@ -31,7 +33,7 @@ class ThreadRepository extends ServiceEntityRepository
             }
         }
 
-        $this->_em->flush();  
+        $this->_em->flush();
     }
 
     // /**

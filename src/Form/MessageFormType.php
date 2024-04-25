@@ -16,7 +16,7 @@ class MessageFormType extends AbstractType
     {
         $builder
             ->add('text', TextareaType::class, [
-                'attr' => ['rows' => '10']
+                'attr' => ['rows' => '10'],
             ])
             //->add('time')
             ->add('thread', ThreadEntityHiddenType::class)

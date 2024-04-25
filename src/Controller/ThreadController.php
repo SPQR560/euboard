@@ -7,7 +7,6 @@ use App\Form\ThreadFormType;
 use App\Model\Board\Repository\BoardRepository;
 use App\Model\Message\DbFetcher\IMessageFetcher;
 use App\Model\Message\Entity\Message;
-use App\Model\Message\Service\MessageTextHandler;
 use App\Model\Thread\Entity\Thread;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +14,6 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Security\Core\Security;
 
 class ThreadController extends AbstractController
@@ -51,13 +49,13 @@ class ThreadController extends AbstractController
         $message->setThread($thread);
 
         $form = $this->createForm(MessageFormType::class, $message, [
-            'action' => $this->generateUrl('add_message')
+            'action' => $this->generateUrl('add_message'),
         ]);
 
         return $this->render('thread/getThread.html.twig', [
             'thread' => $thread,
             'messages' => $messages,
-            'message_form' => $form->createView()
+            'message_form' => $form->createView(),
         ]);
     }
 
@@ -68,7 +66,7 @@ class ThreadController extends AbstractController
     {
         $thread = new Thread();
         $form = $this->createForm(ThreadFormType::class, $thread);
-        $board = $this->boardRepository->findOneBy(['id'=> $request->get('board-id')]);
+        $board = $this->boardRepository->findOneBy(['id' => $request->get('board-id')]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() && !is_null($board)) {
@@ -89,7 +87,7 @@ class ThreadController extends AbstractController
         }
 
         return $this->render('thread/addThread.html.twig', [
-            'thread_form' => $form->createView()
+            'thread_form' => $form->createView(),
         ]);
     }
 }

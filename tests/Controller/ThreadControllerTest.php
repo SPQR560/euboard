@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ThreadControllerTest extends WebTestCase
 {
-
     public function testGetThread(): void
     {
         $client = static::createClient();
@@ -19,7 +18,7 @@ class ThreadControllerTest extends WebTestCase
         $treadRepository = $em->getRepository(Thread::class);
         $thread = $treadRepository->findOneBy(['name' => 'How are you?']);
 
-        $crawler = $client->request('GET', '/thread/get/' . htmlspecialchars($thread->getid()));
+        $crawler = $client->request('GET', '/thread/get/'.htmlspecialchars($thread->getid()));
 
         $this->assertResponseIsSuccessful();
         $this->assertEquals(4, $crawler->filter('main')->children('.container')->count());
@@ -41,12 +40,12 @@ class ThreadControllerTest extends WebTestCase
             'thread_form[name]' => 'new thread',
             'thread_form[text]' => $messageText,
         ]);
-       $this->assertResponseRedirects();
-       $crawler = $client->followRedirect();
-       $firstMessageAtThread = $crawler->filter('main')
+        $this->assertResponseRedirects();
+        $crawler = $client->followRedirect();
+        $firstMessageAtThread = $crawler->filter('main')
            ->children('.container')
            ->filter('p')
            ->text();
-       $this->assertEquals($messageText, $firstMessageAtThread);
+        $this->assertEquals($messageText, $firstMessageAtThread);
     }
 }

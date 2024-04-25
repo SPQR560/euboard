@@ -16,7 +16,13 @@ rector:
 	docker compose run php-cli php vendor/bin/rector process src --dry-run	
 
 rector-fix:
-	docker compose run php-cli php vendor/bin/rector process src		
+	docker compose run php-cli php vendor/bin/rector process src
+
+cs-fixer:
+	docker compose run php-cli php vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix --dry-run -vv			
+
+cs-fixer-fix:
+	docker compose run php-cli php vendor/bin/php-cs-fixer --config=.php-cs-fixer.dist.php fix -vv	
 
 make-migration:
 	docker compose run --rm php-cli php bin/console make:migration

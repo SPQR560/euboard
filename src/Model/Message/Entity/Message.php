@@ -1,12 +1,12 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Model\Message\Entity;
 
 use App\Model\Message\Repository\MessageRepository;
 use App\Model\Thread\Entity\Thread;
 use App\Model\User\Entity\User;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,7 +48,7 @@ class Message
      */
     public function setTimeValue()
     {
-        if(empty($this->time)) {
+        if (empty($this->time)) {
             $this->time = new \DateTimeImmutable();
         }
     }
