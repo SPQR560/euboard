@@ -21,8 +21,11 @@ use Symfony\Component\Security\Core\Security;
 class ThreadController extends AbstractController
 {
     protected IMessageFetcher $messageFetcher;
+
     protected EntityManagerInterface $entityManager;
+
     protected BoardRepository $boardRepository;
+
     protected Security $security;
 
     public function __construct(
@@ -39,8 +42,6 @@ class ThreadController extends AbstractController
 
     /**
      * @Route("/thread/get/{id}", name="get_thread")
-     * @param Thread $thread
-     * @return Response
      */
     public function getThread(Thread $thread): Response
     {
@@ -48,6 +49,7 @@ class ThreadController extends AbstractController
 
         $message = new Message();
         $message->setThread($thread);
+
         $form = $this->createForm(MessageFormType::class, $message, [
             'action' => $this->generateUrl('add_message')
         ]);
@@ -61,8 +63,6 @@ class ThreadController extends AbstractController
 
     /**
      * @Route("/thread/add-thread/", name="add_thread")
-     * @param Request $request
-     * @return Response
      */
     public function createThread(Request $request): Response
     {
@@ -79,6 +79,7 @@ class ThreadController extends AbstractController
             if (!is_null($user)) {
                 $thread->setAuthor($user);
             }
+
             $this->entityManager->persist($thread);
             $this->entityManager->flush();
 

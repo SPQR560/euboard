@@ -11,10 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ThreadEntityHiddenType extends EntityHiddenType
 {
-    /**
-     *
-     * @param ManagerRegistry $doctrine
-     */
+    
     public function __construct(ManagerRegistry $doctrine)
     {
         parent::__construct($doctrine);

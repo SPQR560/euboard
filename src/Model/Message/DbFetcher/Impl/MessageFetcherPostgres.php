@@ -13,7 +13,6 @@ class MessageFetcherPostgres implements IMessageFetcher
 
     /**
      * MessageFetcherPostgres constructor.
-     * @param Connection $connection
      */
     public function __construct(Connection $connection)
     {
@@ -21,7 +20,6 @@ class MessageFetcherPostgres implements IMessageFetcher
     }
 
     /**
-     * @return array
      * @throws \Doctrine\DBAL\Driver\Exception
      * @throws \Doctrine\DBAL\Exception
      */
@@ -34,9 +32,6 @@ class MessageFetcherPostgres implements IMessageFetcher
         return $result->fetchAllAssociative();
     }
 
-    /**
-     * @return string
-     */
     protected function getSql(): string
     {
         return "SELECT m.id,

@@ -17,10 +17,7 @@ class EntityHiddenType extends HiddenType implements DataTransformerInterface
     /** @var string $entityClass */
     protected $entityClass;
 
-    /**
-     *
-     * @param ManagerRegistry $doctrine
-     */
+    
     public function __construct(ManagerRegistry $doctrine)
     {
         $this->dm = $doctrine;
@@ -50,8 +47,8 @@ class EntityHiddenType extends HiddenType implements DataTransformerInterface
                 "id" => $data
             ));
         }
-        catch (\Exception $e) {
-            throw new TransformationFailedException($e->getMessage());
+        catch (\Exception $exception) {
+            throw new TransformationFailedException($exception->getMessage());
         }
 
         if ($res === null) {

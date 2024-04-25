@@ -16,14 +16,10 @@ class BoardFetcherPostgres implements  IBoardFetcher
     }
 
     /**
-     * @param \DateTimeImmutable $currentTime
-     * @param string $boardName
-     * @param bool $sortDesc
-     * @return array
      * @throws \Doctrine\DBAL\Driver\Exception
      * @throws \Doctrine\DBAL\Exception
      */
-    function getBoards(string $boardName = '', bool $sortDesc = true, \DateTimeImmutable $currentTime = null): array
+    public function getBoards(string $boardName = '', bool $sortDesc = true, \DateTimeImmutable $currentTime = null): array
     {
         if (is_null($currentTime)) {
             $currentTime = new \DateTimeImmutable();
@@ -37,10 +33,6 @@ class BoardFetcherPostgres implements  IBoardFetcher
         return $result->fetchAllAssociative();
     }
 
-    /**
-     * @param bool $sortDesc
-     * @return string
-     */
     protected function getBoardsWithMessagePerHourRate(bool $sortDesc = true): string
     {
         return "SELECT query.name,

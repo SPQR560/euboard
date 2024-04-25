@@ -38,8 +38,6 @@ class ChildMessages
 
     /**
      * ChildMessages constructor.
-     * @param Message|null $message
-     * @param Message|null $parentMessage
      */
     public function __construct(?Message $message, ?Message $parentMessage, Thread $thread)
     {

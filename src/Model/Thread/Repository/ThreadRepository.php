@@ -30,8 +30,10 @@ class ThreadRepository extends ServiceEntityRepository
                 $this->_em->remove($thread);
             }
         }
+
         $this->_em->flush();  
     }
+
     // /**
     //  * @return Thread[] Returns an array of Thread objects
     //  */

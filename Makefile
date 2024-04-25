@@ -12,6 +12,12 @@ test:
 stan:
 	docker compose run php-cli php vendor/bin/phpstan analyse -c phpstan.dist.neon
 
+rector:
+	docker compose run php-cli php vendor/bin/rector process src --dry-run	
+
+rector-fix:
+	docker compose run php-cli php vendor/bin/rector process src		
+
 make-migration:
 	docker compose run --rm php-cli php bin/console make:migration
 

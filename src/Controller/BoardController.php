@@ -20,8 +20,6 @@ class BoardController extends AbstractController
 
     /**
      * @Route("/board/{path}", name="board_treads")
-     * @param Board $board
-     * @return Response
      */
     public function boardThreads(Board $board): Response
     {

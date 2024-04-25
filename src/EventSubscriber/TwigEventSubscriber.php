@@ -10,6 +10,7 @@ use App\Model\Board\Repository\BoardRepository;
 class TwigEventSubscriber implements EventSubscriberInterface
 {
     private Environment $twig;
+
     private BoardRepository $boardRepository;
 
     public function __construct(Environment $twig, BoardRepository $boardRepository)

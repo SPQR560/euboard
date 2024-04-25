@@ -101,11 +101,9 @@ class Board
 
     public function removeThread(Thread $thread): self
     {
-        if ($this->threads->removeElement($thread)) {
-            // set the owning side to null (unless already changed)
-            if ($thread->getBoard() === $this) {
-                $thread->setBoard(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->threads->removeElement($thread) && $thread->getBoard() === $this) {
+            $thread->setBoard(null);
         }
 
         return $this;

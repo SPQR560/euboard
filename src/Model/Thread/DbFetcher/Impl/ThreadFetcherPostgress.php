@@ -11,7 +11,6 @@ class ThreadFetcherPostgress implements IThreadFetcher
 
     /**
      * MessageFetcherPostgres constructor.
-     * @param Connection $connection
      */
     public function __construct(Connection $connection)
     {
@@ -19,7 +18,6 @@ class ThreadFetcherPostgress implements IThreadFetcher
     }
 
     /**
-     * @return array
      * @throws \Doctrine\DBAL\Driver\Exception
      * @throws \Doctrine\DBAL\Exception
      */
@@ -35,10 +33,7 @@ class ThreadFetcherPostgress implements IThreadFetcher
         return $result->fetchAllAssociative();
     }
     
-     /**
-     * @return string
-     */
-    protected function getSql(): string
+     protected function getSql(): string
     {
         return <<<SQL
 SELECT

@@ -21,9 +21,6 @@ class AppFixtures extends Fixture
         $this->encoderFactory = $encoderFactory;
     }
 
-    /**
-     * @return string
-     */
     public function setLoremImpsumText(): string
     {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam malesuada eu metus non pharetra.
@@ -39,81 +36,97 @@ class AppFixtures extends Fixture
         $board = new Board();
         $board->setName("Random");
         $board->setPath("b");
+
         $manager->persist($board);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Software developing");
         $anotherBoard->setPath("dev");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Politics");
         $anotherBoard->setPath("po");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Auto");
         $anotherBoard->setPath("au");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Bikes");
         $anotherBoard->setPath("bi");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Books");
         $anotherBoard->setPath("bo");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("History");
         $anotherBoard->setPath("hi");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Movies");
         $anotherBoard->setPath("mov");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Music");
         $anotherBoard->setPath("mu");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Science");
         $anotherBoard->setPath("sc");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("News");
         $anotherBoard->setPath("news");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Video games");
         $anotherBoard->setPath("vg");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Hardware");
         $anotherBoard->setPath("hw");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Religion");
         $anotherBoard->setPath("rel");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Psychology");
         $anotherBoard->setPath("psy");
+
         $manager->persist($anotherBoard);
 
         $anotherBoard = new Board();
         $anotherBoard->setName("Philosophy");
         $anotherBoard->setPath("phi");
+
         $manager->persist($anotherBoard);
 
         $thread = new Thread();
@@ -121,12 +134,14 @@ class AppFixtures extends Fixture
         $thread->setBoard($board);
         $thread->setText($this->setLoremImpsumText());
         $thread->setCreationTime(new DateTimeImmutable());
+
         $manager->persist($thread);
 
         $messageFirstThread = new Message();
         $messageFirstThread->setText("test ok");
         $messageFirstThread->setTime(new DateTimeImmutable());
         $messageFirstThread->setThread($thread);
+
         $manager->persist($messageFirstThread);
 
         $thread2 = new Thread();
@@ -134,18 +149,21 @@ class AppFixtures extends Fixture
         $thread2->setBoard($board);
         $thread2->setText("Please answer on my question");
         $thread2->setCreationTime(new DateTimeImmutable());
+
         $manager->persist($thread2);
 
         $messageSecondThread = new Message();
         $messageSecondThread->setText("I am fine");
         $messageSecondThread->setTime(new DateTimeImmutable());
         $messageSecondThread->setThread($thread2);
+
         $manager->persist($messageSecondThread);
 
         $messageSecondThread2 = new Message();
         $messageSecondThread2->setText("I am fine too");
         $messageSecondThread2->setTime((new DateTimeImmutable())->add(new \DateInterval('PT1H')));
         $messageSecondThread2->setThread($thread2);
+
         $manager->persist($messageSecondThread2);
         $manager->persist(new ChildMessages($messageSecondThread2, $messageSecondThread, $thread2));
 
@@ -153,6 +171,7 @@ class AppFixtures extends Fixture
         $messageSecondThread3->setText("And me too");
         $messageSecondThread3->setTime((new DateTimeImmutable())->add(new \DateInterval('PT1H30M')));
         $messageSecondThread3->setThread($thread2);
+
         $manager->persist($messageSecondThread3);
         $manager->persist(new ChildMessages($messageSecondThread3, $messageSecondThread, $thread2));
 

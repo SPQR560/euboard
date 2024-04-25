@@ -20,10 +20,15 @@ use Symfony\Component\Security\Core\Security;
 class MessageController extends AbstractController
 {
     protected EntityManagerInterface $entityManager;
+
     protected ThreadRepository $threadRepository;
+
     protected MessageTextHandler $textHandler;
+
     protected MessageRepository $messageRepository;
+
     protected ChildMessagesRepository $childMessagesRepository;
+
     protected Security $security;
 
     public function __construct(
@@ -44,8 +49,6 @@ class MessageController extends AbstractController
 
     /**
      * @Route("/message/add", name="add_message", methods={"POST"})
-     * @param Request $request
-     * @return Response
      */
     public function addMessage(Request $request): Response
     {
@@ -63,6 +66,7 @@ class MessageController extends AbstractController
             if (!is_null($user)) {
                 $message->setAuthor($user);
             }
+
             $this->entityManager->persist($message);
 
             foreach ($resultArray['listOfParentMessages'] as $parentMessageId) {
@@ -81,8 +85,6 @@ class MessageController extends AbstractController
     /**
      * @Route("/message/delete/{id}", name="delete_message", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
-     * @param Message $message
-     * @return Response
      */
     public function deleteMessage(Message $message): Response
     {
@@ -93,6 +95,7 @@ class MessageController extends AbstractController
         foreach ($parentMessages as $parentMessage) {
             $this->entityManager->remove($parentMessage);
         }
+
         $childMessages = $this->childMessagesRepository->findBy(['parentMessage' => $message]);
         foreach ($childMessages as $childMessage) {
             $this->entityManager->remove($childMessage);

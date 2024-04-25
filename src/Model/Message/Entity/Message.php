@@ -43,10 +43,6 @@ class Message
      */
     private $author;
 
-    public function __construct()
-    {
-    }
-
     /**
      * @ORM\PrePersist
      */

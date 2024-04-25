@@ -185,11 +185,9 @@ class Thread
 
     public function removeMessage(Message $message): self
     {
-        if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getThread() === $this) {
-                $message->setThread(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->messages->removeElement($message) && $message->getThread() === $this) {
+            $message->setThread(null);
         }
 
         return $this;
@@ -215,11 +213,9 @@ class Thread
 
     public function removeMessages(ChildMessages $message): self
     {
-        if ($this->childMessages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
-            if ($message->getThread() === $this) {
-                $message->setThread(null);
-            }
+        // set the owning side to null (unless already changed)
+        if ($this->childMessages->removeElement($message) && $message->getThread() === $this) {
+            $message->setThread(null);
         }
 
         return $this;

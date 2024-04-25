@@ -11,7 +11,9 @@ use \App\Model\Thread\Repository\ThreadRepository;
 class DeleteOldTreadsCommand extends Command
 {
     protected static $defaultName = 'app:delete-old-treads';
+
     protected static $defaultDescription = 'command delete old treads';
+
     private ThreadRepository $threadRepository;
 
 
@@ -21,7 +23,7 @@ class DeleteOldTreadsCommand extends Command
 
         parent::__construct();
     }
-    
+
     protected function configure()
     {
         $this
@@ -32,9 +34,9 @@ class DeleteOldTreadsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        
+
         $this->threadRepository->deleteOldThreads();
-               
+
         $io->success('Old threads have deleted');
 
         return Command::SUCCESS;
