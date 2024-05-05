@@ -11,7 +11,6 @@ class EntityHiddenType extends HiddenType implements DataTransformerInterface
 {
     private ManagerRegistry $dm;
 
-
     /**
      * @var class-string
      */
@@ -37,6 +36,7 @@ class EntityHiddenType extends HiddenType implements DataTransformerInterface
 
     /**
      * @param mixed $data
+     *
      * @return mixed|object|null
      */
     public function reverseTransform($data)

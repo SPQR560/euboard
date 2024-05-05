@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class MessageController extends AbstractController
 {
     private AddMessageUseCase $addMessageUseCase;
+
     private DeleteMessageUseCase $deleteMessageUseCase;
 
     public function __construct(

@@ -14,8 +14,11 @@ use Symfony\Component\Security\Core\Security;
 class AddMessageUseCase
 {
     private MessageTextHandler $textHandler;
+
     private Security $security;
+
     private EntityManagerInterface $entityManager;
+
     private MessageRepository $messageRepository;
 
     public function __construct(
