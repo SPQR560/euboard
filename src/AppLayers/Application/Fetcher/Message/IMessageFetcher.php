@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ApplicationLayer\Fetcher\Message;
+namespace App\AppLayers\Application\Fetcher\Message;
 
 interface IMessageFetcher
 {

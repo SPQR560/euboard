@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ApplicationLayer\UseCase\Message;
+namespace App\AppLayers\Application\UseCase\Message;
 
 use App\Model\Message\Entity\Message;
 use App\Model\Message\Repository\ChildMessagesRepository;
@@ -12,7 +12,7 @@ class DeleteMessageUseCase
 {
     private EntityManagerInterface $entityManager;
 
-    protected ChildMessagesRepository $childMessagesRepository;
+    private ChildMessagesRepository $childMessagesRepository;
 
     public function __construct(
         ChildMessagesRepository $childMessagesRepository,

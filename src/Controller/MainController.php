@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\ApplicationLayer\Fetcher\Board\IBoardFetcher;
+use App\AppLayers\Application\Fetcher\Board\IBoardFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

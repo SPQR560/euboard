@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\ApplicationLayer\Fetcher\Message\IMessageFetcher;
+use App\AppLayers\Application\Fetcher\Message\IMessageFetcher;
+use App\AppLayers\Application\UseCase\Thread\CreateThreadUseCase;
+use App\AppLayers\Domain\Exception\BoardIsNotFountException;
 use App\Form\MessageFormType;
 use App\Form\ThreadFormType;
-use App\Model\Board\Repository\BoardRepository;
 use App\Model\Message\Entity\Message;
 use App\Model\Thread\Entity\Thread;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,24 +18,15 @@ use Symfony\Component\Security\Core\Security;
 
 class ThreadController extends AbstractController
 {
-    protected IMessageFetcher $messageFetcher;
-
-    protected EntityManagerInterface $entityManager;
-
-    protected BoardRepository $boardRepository;
-
-    protected Security $security;
+    private IMessageFetcher $messageFetcher;
+    private CreateThreadUseCase $createThreadUseCase;
 
     public function __construct(
         IMessageFetcher $messageFetcher,
-        EntityManagerInterface $entityManager,
-        BoardRepository $boardRepository,
-        Security $security
+        CreateThreadUseCase $createThreadUseCase
     ) {
         $this->messageFetcher = $messageFetcher;
-        $this->entityManager = $entityManager;
-        $this->boardRepository = $boardRepository;
-        $this->security = $security;
+        $this->createThreadUseCase = $createThreadUseCase;
     }
 
     /**
@@ -66,23 +57,15 @@ class ThreadController extends AbstractController
     {
         $thread = new Thread();
         $form = $this->createForm(ThreadFormType::class, $thread);
-        $board = $this->boardRepository->findOneBy(['id' => $request->get('board-id')]);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() && !is_null($board)) {
-            $thread->setCreationTime(new \DateTimeImmutable());
-            $thread->setBoard($board);
-            //todo add picture
-            $user = $this->security->getUser();
-            if (!is_null($user)) {
-                $thread->setAuthor($user);
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->createThreadUseCase->createThread($thread,  $request->get('board-id'));
+
+                return $this->redirectToRoute('get_thread', ['id' => $thread->getId()]);
             }
-
-            $this->entityManager->persist($thread);
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('get_thread', ['id' => $thread->getId()]);
-        } elseif (is_null($board)) {
+        } catch (BoardIsNotFountException $exception) {
             $form->get('text')->addError(new FormError('board is not found'));
         }
 

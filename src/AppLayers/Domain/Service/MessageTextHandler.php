@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Message\Service;
+namespace App\AppLayers\Domain\Service;
 
 use App\Model\Message\Entity\Message;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Board\DbFetcher;
 
-use App\ApplicationLayer\Fetcher\Board\IBoardFetcher;
+use App\AppLayers\Application\Fetcher\Board\IBoardFetcher;
 use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 

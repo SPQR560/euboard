@@ -2,8 +2,8 @@
 
 namespace App\Tests\Model\Message\Service;
 
+use App\AppLayers\Domain\Service\MessageTextHandler;
 use App\Model\Message\Entity\Message;
-use App\Model\Message\Service\MessageTextHandler;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class MessageTextHandlerTest extends KernelTestCase

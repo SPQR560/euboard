@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model\Thread\DbFetcher;
 
-use App\ApplicationLayer\Fetcher\Thread\IThreadFetcher;
+use App\AppLayers\Application\Fetcher\Thread\IThreadFetcher;
 use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 

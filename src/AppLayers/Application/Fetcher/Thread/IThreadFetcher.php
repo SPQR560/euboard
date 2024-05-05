@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ApplicationLayer\Fetcher\Thread;
+namespace App\AppLayers\Application\Fetcher\Thread;
 
 interface IThreadFetcher
 {

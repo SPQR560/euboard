@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\ApplicationLayer\UseCase\Message;
+namespace App\AppLayers\Application\UseCase\Message;
 
+use App\AppLayers\Domain\Service\MessageTextHandler;
 use App\Model\Message\Entity\ChildMessages;
 use App\Model\Message\Entity\Message;
 use App\Model\Message\Repository\MessageRepository;
-use App\Model\Message\Service\MessageTextHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 

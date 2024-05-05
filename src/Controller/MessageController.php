@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\ApplicationLayer\UseCase\Message\AddMessageUseCase;
-use App\ApplicationLayer\UseCase\Message\DeleteMessageUseCase;
+use App\AppLayers\Application\UseCase\Message\AddMessageUseCase;
+use App\AppLayers\Application\UseCase\Message\DeleteMessageUseCase;
 use App\Form\MessageFormType;
 use App\Model\Message\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

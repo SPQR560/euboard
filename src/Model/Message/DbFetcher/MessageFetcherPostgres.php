@@ -2,7 +2,7 @@
 
 namespace App\Model\Message\DbFetcher;
 
-use App\ApplicationLayer\Fetcher\Message\IMessageFetcher;
+use App\AppLayers\Application\Fetcher\Message\IMessageFetcher;
 use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 

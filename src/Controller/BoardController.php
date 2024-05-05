@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\ApplicationLayer\Fetcher\Thread\IThreadFetcher;
+use App\AppLayers\Application\Fetcher\Thread\IThreadFetcher;
 use App\Model\Board\Entity\Board;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
