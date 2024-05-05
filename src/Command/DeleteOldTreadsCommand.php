@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Model\Thread\Repository\ThreadRepository;
+use App\AppLayers\Application\UseCase\Thread\RemoveOldThreadsUseCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,27 +14,25 @@ class DeleteOldTreadsCommand extends Command
 
     protected static string $defaultDescription = 'command delete old treads';
 
-    private ThreadRepository $threadRepository;
+    private RemoveOldThreadsUseCase $removeOldThreadsUseCase;
 
-    public function __construct(ThreadRepository $threadRepository)
+    public function __construct(RemoveOldThreadsUseCase $removeOldThreadsUseCase)
     {
-        $this->threadRepository = $threadRepository;
+        $this->removeOldThreadsUseCase = $removeOldThreadsUseCase;
 
         parent::__construct();
     }
 
     protected function configure(): void
     {
-        $this
-            ->setDescription(self::$defaultDescription)
-        ;
+        $this->setDescription(self::$defaultDescription);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
-        $this->threadRepository->deleteOldThreads();
+        $this->removeOldThreadsUseCase->removeOldThreads();
 
         $io->success('Old threads have deleted');
 
