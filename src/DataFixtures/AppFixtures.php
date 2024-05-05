@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class AppFixtures extends Fixture
 {
-    private $encoderFactory;
+    private EncoderFactoryInterface $encoderFactory;
 
     public function __construct(EncoderFactoryInterface $encoderFactory)
     {
@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
              Donec purus urna, maximus ac augue aliquet, tempor hendrerit risus.';
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $board = new Board();
         $board->setName('Random');

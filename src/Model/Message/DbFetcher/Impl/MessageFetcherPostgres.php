@@ -3,11 +3,12 @@
 namespace App\Model\Message\DbFetcher\Impl;
 
 use App\Model\Message\DbFetcher\IMessageFetcher;
+use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 
 class MessageFetcherPostgres implements IMessageFetcher
 {
-    protected $connection;
+    protected Connection $connection;
 
     /**
      * MessageFetcherPostgres constructor.
@@ -24,6 +25,7 @@ class MessageFetcherPostgres implements IMessageFetcher
     public function getMessages(int $threadId): array
     {
         $sql = $this->getSql();
+        /** @var ArrayStatement $result */
         $result = $this->connection->executeQuery($sql, [
             'tread_id' => $threadId,
         ]);

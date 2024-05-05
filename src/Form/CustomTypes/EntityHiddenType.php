@@ -9,27 +9,36 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class EntityHiddenType extends HiddenType implements DataTransformerInterface
 {
-    /** @var ManagerRegistry */
-    private $dm;
+    private ManagerRegistry $dm;
 
-    /** @var string */
-    protected $entityClass;
+
+    /**
+     * @var class-string
+     */
+    protected string $entityClass;
 
     public function __construct(ManagerRegistry $doctrine)
     {
         $this->dm = $doctrine;
     }
 
+    /**
+     * @param mixed $data
+     */
     public function transform($data): string
     {
         // Modified from comments to use instanceof so that base classes or interfaces can be specified
-        if (null === $data || !$data instanceof $this->entityClass) {
+        if ($data === null || !$data instanceof $this->entityClass) {
             return '';
         }
 
         return $data->getId();
     }
 
+    /**
+     * @param mixed $data
+     * @return mixed|object|null
+     */
     public function reverseTransform($data)
     {
         if (!$data) {

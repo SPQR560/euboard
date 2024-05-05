@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Model\Thread\DbFetcher\Impl;
 
 use App\Model\Thread\DbFetcher\IThreadFetcher;
+use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 
 class ThreadFetcherPostgress implements IThreadFetcher
 {
-    protected $connection;
+    protected Connection $connection;
 
     /**
      * MessageFetcherPostgres constructor.
@@ -28,6 +29,8 @@ class ThreadFetcherPostgress implements IThreadFetcher
         $currentTime = new \DateTimeImmutable();
 
         $sql = $this->getSql();
+
+        /** @var ArrayStatement $result */
         $result = $this->connection->executeQuery($sql, [
             'boardId' => $boardId,
             'currentTime' => $currentTime->format('Y-m-d H:i:sO'),

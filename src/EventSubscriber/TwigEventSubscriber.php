@@ -19,13 +19,13 @@ class TwigEventSubscriber implements EventSubscriberInterface
         $this->boardRepository = $boardRepository;
     }
 
-    public function onControllerEvent(ControllerEvent $event)
+    public function onControllerEvent(ControllerEvent $event): void
     {
         $boards = $this->boardRepository->findBy([], ['name' => 'ASC']);
         $this->twig->addGlobal('sidebarBoards', $boards);
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             ControllerEvent::class => 'onControllerEvent',

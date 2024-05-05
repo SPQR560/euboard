@@ -12,7 +12,7 @@ class DeleteOldTreadsCommand extends Command
 {
     protected static $defaultName = 'app:delete-old-treads';
 
-    protected static $defaultDescription = 'command delete old treads';
+    protected static string $defaultDescription = 'command delete old treads';
 
     private ThreadRepository $threadRepository;
 
@@ -23,7 +23,7 @@ class DeleteOldTreadsCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription(self::$defaultDescription)

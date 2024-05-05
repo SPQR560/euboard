@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Model\Board\DbFetcher\Impl;
 
 use App\Model\Board\DbFetcher\IBoardFetcher;
+use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 
 class BoardFetcherPostgres implements IBoardFetcher
 {
-    protected $connection;
+    protected Connection $connection;
 
     public function __construct(Connection $connection)
     {
@@ -27,6 +28,7 @@ class BoardFetcherPostgres implements IBoardFetcher
         }
 
         $sql = $this->getBoardsWithMessagePerHourRate($sortDesc);
+        /** @var ArrayStatement $result */
         $result = $this->connection->executeQuery($sql, [
             'name' => $boardName,
             'currentTime' => $currentTime->format('Y-m-d H:i:sO'),

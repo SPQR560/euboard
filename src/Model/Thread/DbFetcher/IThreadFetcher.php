@@ -6,5 +6,5 @@ namespace App\Model\Thread\DbFetcher;
 
 interface IThreadFetcher
 {
-    public function getThreads(int $boardId);
+    public function getThreads(int $boardId): array;
 }
