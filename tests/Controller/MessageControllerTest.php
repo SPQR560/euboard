@@ -55,7 +55,8 @@ class MessageControllerTest extends WebTestCase
 
     public function testDeleteMessage(): void
     {
-        $client = static::createClient([],
+        $client = static::createClient(
+            [],
             [
                 'PHP_AUTH_USER' => 'admin@test.ru',
                 'PHP_AUTH_PW' => '123456',
