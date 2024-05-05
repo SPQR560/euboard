@@ -6,7 +6,7 @@ After some time I refactored the project a little, but the code in the project i
 
 Go somewhere else :)
 
-Intallation
+Installation
 
 0) make copy-env
 1) make init
@@ -14,3 +14,12 @@ Intallation
 Run tests
 
 0) make test
+
+
+Run static analyzers
+
+1) make stan
+
+2) make rector
+
+3) make cs-fixer
