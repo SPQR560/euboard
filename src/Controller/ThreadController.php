@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\ApplicationLayer\Fetcher\Message\IMessageFetcher;
 use App\Form\MessageFormType;
 use App\Form\ThreadFormType;
 use App\Model\Board\Repository\BoardRepository;
-use App\Model\Message\DbFetcher\IMessageFetcher;
 use App\Model\Message\Entity\Message;
 use App\Model\Thread\Entity\Thread;
 use Doctrine\ORM\EntityManagerInterface;

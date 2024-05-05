@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Thread\DbFetcher;
+namespace App\ApplicationLayer\Fetcher\Thread;
 
 interface IThreadFetcher
 {

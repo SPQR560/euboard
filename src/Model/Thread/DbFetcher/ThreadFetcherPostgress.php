@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Thread\DbFetcher\Impl;
+namespace App\Model\Thread\DbFetcher;
 
-use App\Model\Thread\DbFetcher\IThreadFetcher;
+use App\ApplicationLayer\Fetcher\Thread\IThreadFetcher;
 use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 

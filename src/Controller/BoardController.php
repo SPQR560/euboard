@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\ApplicationLayer\Fetcher\Thread\IThreadFetcher;
 use App\Model\Board\Entity\Board;
-use App\Model\Thread\DbFetcher\IThreadFetcher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

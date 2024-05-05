@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ApplicationLayer\UseCase;
+namespace App\ApplicationLayer\UseCase\Message;
 
 use App\Model\Message\Entity\Message;
 use App\Model\Message\Repository\ChildMessagesRepository;

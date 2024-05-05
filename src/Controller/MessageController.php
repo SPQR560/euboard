@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\ApplicationLayer\UseCase\AddMessageUseCase;
-use App\ApplicationLayer\UseCase\DeleteMessageUseCase;
+use App\ApplicationLayer\UseCase\Message\AddMessageUseCase;
+use App\ApplicationLayer\UseCase\Message\DeleteMessageUseCase;
 use App\Form\MessageFormType;
 use App\Model\Message\Entity\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class MessageController extends AbstractController
 {

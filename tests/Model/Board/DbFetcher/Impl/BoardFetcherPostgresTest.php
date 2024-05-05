@@ -2,7 +2,7 @@
 
 namespace App\Tests\Model\Board\DbFetcher\Impl;
 
-use App\Model\Board\DbFetcher\Impl\BoardFetcherPostgres;
+use App\Model\Board\DbFetcher\BoardFetcherPostgres;
 use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

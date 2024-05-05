@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model\Message\DbFetcher\Impl;
+namespace App\Model\Message\DbFetcher;
 
-use App\Model\Message\DbFetcher\IMessageFetcher;
+use App\ApplicationLayer\Fetcher\Message\IMessageFetcher;
 use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 

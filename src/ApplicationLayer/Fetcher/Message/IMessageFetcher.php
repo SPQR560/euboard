@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Message\DbFetcher;
+namespace App\ApplicationLayer\Fetcher\Message;
 
 interface IMessageFetcher
 {

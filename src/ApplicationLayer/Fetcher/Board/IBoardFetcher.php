@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Board\DbFetcher;
+namespace App\ApplicationLayer\Fetcher\Board;
 
 interface IBoardFetcher
 {

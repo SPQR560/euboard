@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Model\Board\DbFetcher\Impl;
+namespace App\Model\Board\DbFetcher;
 
-use App\Model\Board\DbFetcher\IBoardFetcher;
+use App\ApplicationLayer\Fetcher\Board\IBoardFetcher;
 use Doctrine\DBAL\Cache\ArrayStatement;
 use Doctrine\DBAL\Connection;
 
