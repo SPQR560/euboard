@@ -2,9 +2,9 @@
 
 This is a simple forum created a long time ago while studying the symphony. 
 
-After some time I refactored the project a little, but the code in the project is still not ideal. And I’m too lazy to refactor this useless pet project. I'm currently writing much better code
+After some time I refactored the project a little, but the code in the project is still not ideal. And I’m too lazy to refactor this useless pet project.
 
-Go somewhere else :)
+Go somewhere else
 
 Installation
 
